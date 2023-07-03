@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Library/Scenes/WorldManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Library/Scenes/Player/Weapon/test_guns.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Library/Scenes/Environment/Pickup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Library/Scenes/Environment/Collision_Box.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Library/Scenes/Enemy/Bat.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Library/Scenes/Enemy/Face.tscn" type="PackedScene" id=6]
+
+[node name="Testing_Area" type="Node2D"]
+
+[node name="Collision_Box" parent="." instance=ExtResource( 4 )]
+position = Vector2( 321, 227 )
+
+[node name="Collision_Box" parent="Collision_Box" instance=ExtResource( 4 )]
+position = Vector2( 135, 73 )
+
+[node name="Collision_Box" parent="Collision_Box/Collision_Box" instance=ExtResource( 4 )]
+position = Vector2( 135, 73 )
+
+[node name="Collision_Box" parent="Collision_Box/Collision_Box/Collision_Box" instance=ExtResource( 4 )]
+position = Vector2( 135, 73 )
+
+[node name="Bat" parent="Collision_Box/Collision_Box/Collision_Box/Collision_Box" instance=ExtResource( 5 )]
+position = Vector2( 96, -284 )
+
+[node name="Face" parent="Collision_Box/Collision_Box/Collision_Box/Collision_Box" instance=ExtResource( 6 )]
+position = Vector2( -180, -362 )
+
+[node name="test_guns" parent="." instance=ExtResource( 2 )]
+position = Vector2( 219, 382 )
+
+[node name="WorldManager" parent="." instance=ExtResource( 1 )]
+position = Vector2( 503, 248 )
+
+[node name="Pickup" parent="." instance=ExtResource( 3 )]
+position = Vector2( 749, 335 )
+item = 1

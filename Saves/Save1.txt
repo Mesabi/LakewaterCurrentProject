@@ -1,0 +1,21 @@
+############position == coords in level (use NPC)
+area
+Position | a
+Level | a
+############
+player
+Health|656
+fuel|200
+AmmoG|99
+AmmoB|0
+AmmoW|0
+AmmoH|0
+AmmoM|0
+ReloadG|99
+ReloadB|0
+ReloadW|0
+ReloadH|0
+ReloadM|0
+Done|
+########## events
+!events
