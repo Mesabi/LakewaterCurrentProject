@@ -8,6 +8,8 @@ onready var health = $Player_Health
 onready var UI = $CanvasLayer/test_ui
 #Player/Camera2D/test_ui
 
+onready var level = $Level
+
 var weapons_free = false
 
 
@@ -21,7 +23,8 @@ var currentReloads  = 00
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	print(self.get_children())
+	#get_parent().get_child(0).readFile()
 	pass # Replace with function body.
 
 
@@ -39,9 +42,11 @@ func doStartUpTasks():
 func getInput():
 	#if(Input.is_action_just_pressed("Pause")):
 	#	pass
-	if(Input.is_action_pressed("TEST")):
+	if(Input.is_action_just_pressed("TEST")):
 		#print(get_tree().get_root().get_node("Main").get_child(0).get_node("WorldManager").get_node("Player").global_position)
-		print(resources.returnAllValues())
+		#Global.loadLevel(self, "res://Library/Levels/Test_Level.tscn")
+		Global.loadLevel(self, "res://Library/Levels/Test_Level.tscn")
+		print(Global.getWorldManager())
 		#UI.currentHealth.text = "Asdf"
 		pass
 		#print(player.velocity)
@@ -176,8 +181,13 @@ func harmSelf(amt):
 	print(health.points)
 	updateUI()
 	
-func pushPlayer(push):
+func knockPlayer(push):
+	#changes player velocity
 	player.velocity = push * .2
+
+func pushPlayer(push):
+	#modifies player velocity
+	player.velocity += push
 
 func loadInPlayerResources(thing, amt):
 	print(thing)

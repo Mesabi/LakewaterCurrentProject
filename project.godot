@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Global="*res://Library/Scenes/Globals/Global.gd"
+States="*res://Library/Scenes/Globals/States.gd"
 
 [editor_plugins]
 

@@ -70,15 +70,15 @@ func _physics_process(delta):
 
 func getPlayerPos():
 	#returns global location of the player
-	return get_node("/root/Main/WorldManager/Player").global_position
+	return Global.getWorldManager().get_node("Player").global_position
 
 func findPlayer():
 	#returns a vector towards the player.
-	return self.global_position.direction_to(get_node("/root/Main/WorldManager/Player").global_position)
+	return self.global_position.direction_to(Global.getWorldManager().get_node("Player").global_position)
 
 func howCloseToPlayer():
 	#returns the distance to the player
-	return self.global_position.distance_to(get_node("/root/Main/WorldManager/Player").global_position)
+	return self.global_position.distance_to(Global.getWorldManager().get_node("Player").global_position)
 
 func setRepeatedCollisionsHigher(amt):
 	repeatedCollisions += amt

@@ -30,6 +30,7 @@ func _physics_process(delta):
 
 
 func move(delta):
+	
 	rotation += rotation_self * rotation_speed * delta
 	var collide = move_and_collide(velocity * delta)
 	if(collide != null):

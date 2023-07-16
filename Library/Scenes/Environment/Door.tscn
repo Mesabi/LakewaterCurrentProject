@@ -33,7 +33,6 @@ collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Edge/StaticBody2D" groups=["Repell"]]
 position = Vector2( 5.00001, 6.10352e-05 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="Edge2" type="Sprite" parent="." groups=["Repell"]]
@@ -46,5 +45,4 @@ collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Edge2/StaticBody2D" groups=["Repell"]]
 position = Vector2( 5.00001, 6.10352e-05 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )

@@ -13,7 +13,6 @@ var filePos = "player"
 var fileSwitch = ["location", "player", "events"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	readFile()
 	pass # Replace with function body.
 
 
@@ -100,8 +99,10 @@ func loadCurrentLevel():
 
 func loadPlayer(thing, amt):
 	#this works assuming you don't add more addons, or move world manager in the hierarchy.
-	#print(get_tree().get_root().get_child(2).get_child(0)) #<- test for where worldmanger is
-	get_tree().get_root().get_child(2).get_child(0).loadInPlayerResources(thing, amt)
+	#OR GLOBALS -.-
+	#print("here")
+	#print(get_tree().get_root().get_child(3).get_child(0)) #<- test for where worldmanger is
+	get_tree().get_root().get_child(3).get_child(1).loadInPlayerResources(thing, amt)
 	
 	pass
 	

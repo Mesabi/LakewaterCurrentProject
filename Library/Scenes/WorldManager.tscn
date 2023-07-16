@@ -24,4 +24,6 @@ margin_bottom = -1.0
 
 [node name="Player_Health" parent="." instance=ExtResource( 5 )]
 
+[node name="Level" type="Node2D" parent="."]
+
 [editable path="Player"]
