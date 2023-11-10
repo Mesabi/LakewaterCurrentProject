@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Library/Scenes/Environment/Test_Stuff/A.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Library/Scenes/Environment/Test_Stuff/B.tscn" type="PackedScene" id=2]
+
+[node name="TestRealm" type="Node2D"]
+
+[node name="B" parent="." instance=ExtResource( 2 )]
+
+[node name="A" parent="." instance=ExtResource( 1 )]
+myName = "a"
+num = 1
+
+[node name="A2" parent="." instance=ExtResource( 1 )]
+myName = "a2"
+num = 2
+
+[connection signal="test_signal" from="B" to="A" method="_on_B_test_signal"]

@@ -140,13 +140,15 @@ func get_resource_from_text(text: String) -> DialogueResource:
 
 
 func show_example_dialogue_balloon(title: String, local_resource: DialogueResource = null, extra_game_states: Array = []) -> void:
+	Global.inInteraction = true# ADDED BY NS
 	var dialogue = yield(get_next_dialogue_line(title, local_resource, extra_game_states), "completed")
 	if dialogue != null:
 		var balloon = preload("res://addons/dialogue_manager/example_balloon/example_balloon.tscn").instance()
 		balloon.dialogue = dialogue
 		get_tree().current_scene.add_child(balloon)
 		show_example_dialogue_balloon(yield(balloon, "actioned"), local_resource, extra_game_states)
-	
+	else:
+		Global.inInteraction = false# ADDED BY NS
 
 ### Helpers
 

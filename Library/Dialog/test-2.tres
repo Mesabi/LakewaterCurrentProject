@@ -1,0 +1,108 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 3
+syntax_version = 2
+raw_text = "~ start
+
+Testo: This is to test things. 
+Testo: What would you like to do?
+- Set Test Object Red
+	RED!
+- Set Test Object Blue
+	BLUE!
+- Start again => start
+- End the conversation => END
+Nathan: For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation."
+errors = [  ]
+titles = {
+"start": "2"
+}
+lines = {
+"0": {
+"next_id": "2",
+"text": "start",
+"type": "title"
+},
+"10": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"translation_key": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"type": "dialogue"
+},
+"2": {
+"character": "Testo",
+"character_replacements": [  ],
+"next_id": "3",
+"replacements": [  ],
+"text": "This is to test things.",
+"translation_key": "This is to test things.",
+"type": "dialogue"
+},
+"3": {
+"character": "Testo",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "What would you like to do?",
+"translation_key": "What would you like to do?",
+"type": "dialogue"
+},
+"4": {
+"next_id": "5",
+"next_id_after": "10",
+"replacements": [  ],
+"responses": PoolStringArray( "4", "6", "8", "9" ),
+"text": "Set Test Object Red",
+"translation_key": "Set Test Object Red",
+"type": "response"
+},
+"5": {
+"character": "",
+"next_id": "10",
+"parent_id": "4",
+"replacements": [  ],
+"text": "RED!",
+"translation_key": "RED!",
+"type": "dialogue"
+},
+"6": {
+"next_id": "7",
+"next_id_after": "10",
+"replacements": [  ],
+"text": "Set Test Object Blue",
+"translation_key": "Set Test Object Blue",
+"type": "response"
+},
+"7": {
+"character": "",
+"next_id": "10",
+"parent_id": "6",
+"replacements": [  ],
+"text": "BLUE!",
+"translation_key": "BLUE!",
+"type": "dialogue"
+},
+"8": {
+"next_id": "2",
+"next_id_after": "10",
+"replacements": [  ],
+"text": "Start again",
+"translation_key": "Start again",
+"type": "response"
+},
+"9": {
+"next_id": "end",
+"next_id_after": "10",
+"replacements": [  ],
+"text": "End the conversation",
+"translation_key": "End the conversation",
+"type": "response"
+}
+}

@@ -1,0 +1,386 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 10
+syntax_version = 2
+raw_text = "~ this_is_a_node_title
+#hermit: no contractions. 
+IX: Ho there! 
+IX: Are you leaving then?
+- What?
+- I'm not sure.
+	=> not_sure
+- I think so.
+	=> write_this
+- Perhaps not yet.
+- I don't think that's any of your business. 
+	IX: Oh?
+	IX: As you wish. 
+	=> END
+
+
+
+
+~ not_sure
+IX: So you are staying then?
+- yes.
+	IX: If you say so.
+	=> write_this 
+- no.
+	IX: Neither staying nor leaving...
+	IX: It is a bit of a binary choice, would you not agree?
+	- From a linear perspective, yes.
+		IX: well?
+		=> write_this 
+	- I concede. I must stay or leave, yes.
+		IX: I take it you haven't made up your mind yet then...
+		=> write_this 
+	- (Attack)
+		=> write_this 
+
+
+~ write_this
+North: You need to finish this!
+
+Nathan: This is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => this_is_a_node_title
+- End the conversation => END
+Nathan: For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation."
+errors = [  ]
+titles = {
+"not_sure": "20",
+"this_is_a_node_title": "2",
+"write_this": "38"
+}
+lines = {
+"0": {
+"next_id": "2",
+"text": "this_is_a_node_title",
+"type": "title"
+},
+"11": {
+"next_id": "12",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "I don't think that's any of your business.",
+"translation_key": "I don't think that's any of your business.",
+"type": "response"
+},
+"12": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "13",
+"parent_id": "11",
+"replacements": [  ],
+"text": "Oh?",
+"translation_key": "Oh?",
+"type": "dialogue"
+},
+"13": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "14",
+"parent_id": "11",
+"replacements": [  ],
+"text": "As you wish.",
+"translation_key": "As you wish.",
+"type": "dialogue"
+},
+"14": {
+"next_id": "end",
+"parent_id": "11",
+"type": "goto"
+},
+"19": {
+"next_id": "20",
+"text": "not_sure",
+"type": "title"
+},
+"2": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "3",
+"replacements": [  ],
+"text": "Ho there!",
+"translation_key": "Ho there!",
+"type": "dialogue"
+},
+"20": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "21",
+"replacements": [  ],
+"text": "So you are staying then?",
+"translation_key": "So you are staying then?",
+"type": "dialogue"
+},
+"21": {
+"next_id": "22",
+"next_id_after": "end!",
+"replacements": [  ],
+"responses": PoolStringArray( "21", "24" ),
+"text": "yes.",
+"translation_key": "yes.",
+"type": "response"
+},
+"22": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "23",
+"parent_id": "21",
+"replacements": [  ],
+"text": "If you say so.",
+"translation_key": "If you say so.",
+"type": "dialogue"
+},
+"23": {
+"next_id": "38",
+"parent_id": "21",
+"type": "goto"
+},
+"24": {
+"next_id": "25",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "no.",
+"translation_key": "no.",
+"type": "response"
+},
+"25": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "26",
+"parent_id": "24",
+"replacements": [  ],
+"text": "Neither staying nor leaving...",
+"translation_key": "Neither staying nor leaving...",
+"type": "dialogue"
+},
+"26": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "27",
+"parent_id": "24",
+"replacements": [  ],
+"text": "It is a bit of a binary choice, would you not agree?",
+"translation_key": "It is a bit of a binary choice, would you not agree?",
+"type": "dialogue"
+},
+"27": {
+"next_id": "28",
+"next_id_after": "end!",
+"parent_id": "24",
+"replacements": [  ],
+"responses": PoolStringArray( "27", "30", "33" ),
+"text": "From a linear perspective, yes.",
+"translation_key": "From a linear perspective, yes.",
+"type": "response"
+},
+"28": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "29",
+"parent_id": "27",
+"replacements": [  ],
+"text": "well?",
+"translation_key": "well?",
+"type": "dialogue"
+},
+"29": {
+"next_id": "38",
+"parent_id": "27",
+"type": "goto"
+},
+"3": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "Are you leaving then?",
+"translation_key": "Are you leaving then?",
+"type": "dialogue"
+},
+"30": {
+"next_id": "31",
+"next_id_after": "end!",
+"parent_id": "24",
+"replacements": [  ],
+"text": "I concede. I must stay or leave, yes.",
+"translation_key": "I concede. I must stay or leave, yes.",
+"type": "response"
+},
+"31": {
+"character": "IX",
+"character_replacements": [  ],
+"next_id": "32",
+"parent_id": "30",
+"replacements": [  ],
+"text": "I take it you haven't made up your mind yet then...",
+"translation_key": "I take it you haven't made up your mind yet then...",
+"type": "dialogue"
+},
+"32": {
+"next_id": "38",
+"parent_id": "30",
+"type": "goto"
+},
+"33": {
+"next_id": "34",
+"next_id_after": "end!",
+"parent_id": "24",
+"replacements": [  ],
+"text": "(Attack)",
+"translation_key": "(Attack)",
+"type": "response"
+},
+"34": {
+"next_id": "38",
+"parent_id": "33",
+"type": "goto"
+},
+"37": {
+"next_id": "38",
+"text": "write_this",
+"type": "title"
+},
+"38": {
+"character": "North",
+"character_replacements": [  ],
+"next_id": "40",
+"replacements": [  ],
+"text": "You need to finish this!",
+"translation_key": "You need to finish this!",
+"type": "dialogue"
+},
+"4": {
+"next_id": "end!",
+"next_id_after": "end!",
+"replacements": [  ],
+"responses": PoolStringArray( "4", "5", "7", "9", "11" ),
+"text": "What?",
+"translation_key": "What?",
+"type": "response"
+},
+"40": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "41",
+"replacements": [  ],
+"text": "This is some dialogue.",
+"translation_key": "This is some dialogue.",
+"type": "dialogue"
+},
+"41": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "42",
+"replacements": [  ],
+"text": "Here are some choices.",
+"translation_key": "Here are some choices.",
+"type": "dialogue"
+},
+"42": {
+"next_id": "43",
+"next_id_after": "48",
+"replacements": [  ],
+"responses": PoolStringArray( "42", "44", "46", "47" ),
+"text": "First one",
+"translation_key": "First one",
+"type": "response"
+},
+"43": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "48",
+"parent_id": "42",
+"replacements": [  ],
+"text": "You picked the first one.",
+"translation_key": "You picked the first one.",
+"type": "dialogue"
+},
+"44": {
+"next_id": "45",
+"next_id_after": "48",
+"replacements": [  ],
+"text": "Second one",
+"translation_key": "Second one",
+"type": "response"
+},
+"45": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "48",
+"parent_id": "44",
+"replacements": [  ],
+"text": "You picked the second one.",
+"translation_key": "You picked the second one.",
+"type": "dialogue"
+},
+"46": {
+"next_id": "2",
+"next_id_after": "48",
+"replacements": [  ],
+"text": "Start again",
+"translation_key": "Start again",
+"type": "response"
+},
+"47": {
+"next_id": "end",
+"next_id_after": "48",
+"replacements": [  ],
+"text": "End the conversation",
+"translation_key": "End the conversation",
+"type": "response"
+},
+"48": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"translation_key": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"type": "dialogue"
+},
+"5": {
+"next_id": "6",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "I'm not sure.",
+"translation_key": "I'm not sure.",
+"type": "response"
+},
+"6": {
+"next_id": "20",
+"parent_id": "5",
+"type": "goto"
+},
+"7": {
+"next_id": "8",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "I think so.",
+"translation_key": "I think so.",
+"type": "response"
+},
+"8": {
+"next_id": "38",
+"parent_id": "7",
+"type": "goto"
+},
+"9": {
+"next_id": "end!",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "Perhaps not yet.",
+"translation_key": "Perhaps not yet.",
+"type": "response"
+}
+}

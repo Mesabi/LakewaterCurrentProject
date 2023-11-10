@@ -1,0 +1,478 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 45
+syntax_version = 2
+raw_text = "~ start
+#consider obscuring portions of this text at random? i.e. corrupted memories?
+
+
+II: ...
+II: Awake.
+VIII: ...
+II: Do you know where you are?
+- ...
+	II: Are you able to understand me?
+	- ...
+		VIII: It's useless. Back to the void with it. 
+		II: No, it's just defiant. We'll continue.
+		#increase defiance by 1.
+	- No.
+		II: ...
+		VIII: It's a Liar. It might be worthy. 
+		#increase distrust by 1?
+	- Yes. 
+		II: Confirmed. Continuing. 
+		#increase obedience by 1.
+- No.
+	II: This is expected. You will be informed of things you need to know.
+	#increase trust 1
+- Yes. 
+	II: Oh?
+	II: Please explain where you are?
+	- I'm dreaming?
+		#increase distrust by 1
+		II: I see.
+	- We're outside time and space?
+		II: We are where we are supposed to be.
+		#increase defiance by 1
+	- I... I'm not sure. Where am I?
+		II: We are where we are supposed to be.
+		#increase trust by 1
+	- I'm at home?
+		#Decrease trust by 1
+		II: ... 
+		II: We'll continue.
+			
+
+II: There's work to be done.
+VIII: It won't bother.
+VIII: 
+II: 
+VIII: ...
+II: Well?
+VIII: 
+II: I think this is an oppertunity.
+VIII: 
+
+
+~ VIII_react_opening
+#take damage.
+VIII: Insolent.
+#take damage. 
+VIII: Insolent Insolent Insolent.
+#take damage.
+II: That's enough.
+VIII: This should be returned to the void.
+II: No. 
+
+
+"
+errors = [  ]
+titles = {
+"VIII_react_opening": "55",
+"start": "4"
+}
+lines = {
+"0": {
+"next_id": "4",
+"text": "start",
+"type": "title"
+},
+"10": {
+"next_id": "11",
+"next_id_after": "42",
+"parent_id": "8",
+"replacements": [  ],
+"responses": PoolStringArray( "10", "14", "18" ),
+"text": "...",
+"translation_key": "...",
+"type": "response"
+},
+"11": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "12",
+"parent_id": "10",
+"replacements": [  ],
+"text": "It's useless. Back to the void with it.",
+"translation_key": "It's useless. Back to the void with it.",
+"type": "dialogue"
+},
+"12": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "10",
+"replacements": [  ],
+"text": "No, it's just defiant. We'll continue.",
+"translation_key": "No, it's just defiant. We'll continue.",
+"type": "dialogue"
+},
+"14": {
+"next_id": "15",
+"next_id_after": "42",
+"parent_id": "8",
+"replacements": [  ],
+"text": "No.",
+"translation_key": "No.",
+"type": "response"
+},
+"15": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "16",
+"parent_id": "14",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"16": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "14",
+"replacements": [  ],
+"text": "It's a Liar. It might be worthy.",
+"translation_key": "It's a Liar. It might be worthy.",
+"type": "dialogue"
+},
+"18": {
+"next_id": "19",
+"next_id_after": "42",
+"parent_id": "8",
+"replacements": [  ],
+"text": "Yes.",
+"translation_key": "Yes.",
+"type": "response"
+},
+"19": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "18",
+"replacements": [  ],
+"text": "Confirmed. Continuing.",
+"translation_key": "Confirmed. Continuing.",
+"type": "dialogue"
+},
+"21": {
+"next_id": "22",
+"next_id_after": "42",
+"replacements": [  ],
+"text": "No.",
+"translation_key": "No.",
+"type": "response"
+},
+"22": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "21",
+"replacements": [  ],
+"text": "This is expected. You will be informed of things you need to know.",
+"translation_key": "This is expected. You will be informed of things you need to know.",
+"type": "dialogue"
+},
+"24": {
+"next_id": "25",
+"next_id_after": "42",
+"replacements": [  ],
+"text": "Yes.",
+"translation_key": "Yes.",
+"type": "response"
+},
+"25": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "26",
+"parent_id": "24",
+"replacements": [  ],
+"text": "Oh?",
+"translation_key": "Oh?",
+"type": "dialogue"
+},
+"26": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "27",
+"parent_id": "24",
+"replacements": [  ],
+"text": "Please explain where you are?",
+"translation_key": "Please explain where you are?",
+"type": "dialogue"
+},
+"27": {
+"next_id": "29",
+"next_id_after": "42",
+"parent_id": "24",
+"replacements": [  ],
+"responses": PoolStringArray( "27", "30", "33", "36" ),
+"text": "I'm dreaming?",
+"translation_key": "I'm dreaming?",
+"type": "response"
+},
+"29": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "27",
+"replacements": [  ],
+"text": "I see.",
+"translation_key": "I see.",
+"type": "dialogue"
+},
+"30": {
+"next_id": "31",
+"next_id_after": "42",
+"parent_id": "24",
+"replacements": [  ],
+"text": "We're outside time and space?",
+"translation_key": "We're outside time and space?",
+"type": "response"
+},
+"31": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "30",
+"replacements": [  ],
+"text": "We are where we are supposed to be.",
+"translation_key": "We are where we are supposed to be.",
+"type": "dialogue"
+},
+"33": {
+"next_id": "34",
+"next_id_after": "42",
+"parent_id": "24",
+"replacements": [  ],
+"text": "I... I'm not sure. Where am I?",
+"translation_key": "I... I'm not sure. Where am I?",
+"type": "response"
+},
+"34": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "33",
+"replacements": [  ],
+"text": "We are where we are supposed to be.",
+"translation_key": "We are where we are supposed to be.",
+"type": "dialogue"
+},
+"36": {
+"next_id": "38",
+"next_id_after": "42",
+"parent_id": "24",
+"replacements": [  ],
+"text": "I'm at home?",
+"translation_key": "I'm at home?",
+"type": "response"
+},
+"38": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "36",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"39": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "42",
+"parent_id": "36",
+"replacements": [  ],
+"text": "We'll continue.",
+"translation_key": "We'll continue.",
+"type": "dialogue"
+},
+"4": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "5",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"42": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "43",
+"replacements": [  ],
+"text": "There's work to be done.",
+"translation_key": "There's work to be done.",
+"type": "dialogue"
+},
+"43": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "44",
+"replacements": [  ],
+"text": "It won't bother.",
+"translation_key": "It won't bother.",
+"type": "dialogue"
+},
+"44": {
+"character": "",
+"next_id": "45",
+"replacements": [  ],
+"text": "VIII:",
+"translation_key": "VIII:",
+"type": "dialogue"
+},
+"45": {
+"character": "",
+"next_id": "46",
+"replacements": [  ],
+"text": "II:",
+"translation_key": "II:",
+"type": "dialogue"
+},
+"46": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "47",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"47": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "48",
+"replacements": [  ],
+"text": "Well?",
+"translation_key": "Well?",
+"type": "dialogue"
+},
+"48": {
+"character": "",
+"next_id": "49",
+"replacements": [  ],
+"text": "VIII:",
+"translation_key": "VIII:",
+"type": "dialogue"
+},
+"49": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "50",
+"replacements": [  ],
+"text": "I think this is an oppertunity.",
+"translation_key": "I think this is an oppertunity.",
+"type": "dialogue"
+},
+"5": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "6",
+"replacements": [  ],
+"text": "Awake.",
+"translation_key": "Awake.",
+"type": "dialogue"
+},
+"50": {
+"character": "",
+"next_id": "",
+"replacements": [  ],
+"text": "VIII:",
+"translation_key": "VIII:",
+"type": "dialogue"
+},
+"53": {
+"next_id": "55",
+"text": "VIII_react_opening",
+"type": "title"
+},
+"55": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "57",
+"replacements": [  ],
+"text": "Insolent.",
+"translation_key": "Insolent.",
+"type": "dialogue"
+},
+"57": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "59",
+"replacements": [  ],
+"text": "Insolent Insolent Insolent.",
+"translation_key": "Insolent Insolent Insolent.",
+"type": "dialogue"
+},
+"59": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "60",
+"replacements": [  ],
+"text": "That's enough.",
+"translation_key": "That's enough.",
+"type": "dialogue"
+},
+"6": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "7",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"60": {
+"character": "VIII",
+"character_replacements": [  ],
+"next_id": "61",
+"replacements": [  ],
+"text": "This should be returned to the void.",
+"translation_key": "This should be returned to the void.",
+"type": "dialogue"
+},
+"61": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "No.",
+"translation_key": "No.",
+"type": "dialogue"
+},
+"7": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "8",
+"replacements": [  ],
+"text": "Do you know where you are?",
+"translation_key": "Do you know where you are?",
+"type": "dialogue"
+},
+"8": {
+"next_id": "9",
+"next_id_after": "42",
+"replacements": [  ],
+"responses": PoolStringArray( "8", "21", "24" ),
+"text": "...",
+"translation_key": "...",
+"type": "response"
+},
+"9": {
+"character": "II",
+"character_replacements": [  ],
+"next_id": "10",
+"parent_id": "8",
+"replacements": [  ],
+"text": "Are you able to understand me?",
+"translation_key": "Are you able to understand me?",
+"type": "dialogue"
+}
+}

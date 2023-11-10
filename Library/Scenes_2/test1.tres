@@ -1,0 +1,222 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 6
+syntax_version = 2
+raw_text = "~ this_is_a_node_title
+
+set inInteraction = true
+if has_met_nathan == false
+	Nathan: hello
+	set has_met_nathan = true
+	this is [num]
+else
+	Nathan: hello again!
+
+Nathan: This is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => this_is_a_node_title
+set inInteraction = false
+- End the conversation => END
+Nathan: For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation."
+errors = [  ]
+titles = {
+"this_is_a_node_title": "2"
+}
+lines = {
+"0": {
+"next_id": "2",
+"text": "this_is_a_node_title",
+"type": "title"
+},
+"10": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "11",
+"replacements": [  ],
+"text": "This is some dialogue.",
+"translation_key": "This is some dialogue.",
+"type": "dialogue"
+},
+"11": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "12",
+"replacements": [  ],
+"text": "Here are some choices.",
+"translation_key": "Here are some choices.",
+"type": "dialogue"
+},
+"12": {
+"next_id": "13",
+"next_id_after": "17",
+"replacements": [  ],
+"responses": PoolStringArray( "12", "14", "16" ),
+"text": "First one",
+"translation_key": "First one",
+"type": "response"
+},
+"13": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "17",
+"parent_id": "12",
+"replacements": [  ],
+"text": "You picked the first one.",
+"translation_key": "You picked the first one.",
+"type": "dialogue"
+},
+"14": {
+"next_id": "15",
+"next_id_after": "17",
+"replacements": [  ],
+"text": "Second one",
+"translation_key": "Second one",
+"type": "response"
+},
+"15": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "17",
+"parent_id": "14",
+"replacements": [  ],
+"text": "You picked the second one.",
+"translation_key": "You picked the second one.",
+"type": "dialogue"
+},
+"16": {
+"next_id": "2",
+"next_id_after": "17",
+"replacements": [  ],
+"text": "Start again",
+"translation_key": "Start again",
+"type": "response"
+},
+"17": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "inInteraction"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "18",
+"type": "mutation"
+},
+"18": {
+"next_id": "end",
+"next_id_after": "19",
+"replacements": [  ],
+"responses": PoolStringArray( "18" ),
+"text": "End the conversation",
+"translation_key": "End the conversation",
+"type": "response"
+},
+"19": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"translation_key": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"type": "dialogue"
+},
+"2": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "inInteraction"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "3",
+"type": "mutation"
+},
+"3": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "has_met_nathan"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_conditional_id": "7",
+"next_id": "4",
+"next_id_after": "10",
+"type": "condition"
+},
+"4": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "5",
+"parent_id": "3",
+"replacements": [  ],
+"text": "hello",
+"translation_key": "hello",
+"type": "dialogue"
+},
+"5": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "has_met_nathan"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "6",
+"parent_id": "3",
+"type": "mutation"
+},
+"6": {
+"character": "",
+"next_id": "10",
+"parent_id": "3",
+"replacements": [  ],
+"text": "this is [num]",
+"translation_key": "this is [num]",
+"type": "dialogue"
+},
+"7": {
+"next_conditional_id": "10",
+"next_id": "8",
+"next_id_after": "10",
+"type": "condition"
+},
+"8": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "10",
+"parent_id": "7",
+"replacements": [  ],
+"text": "hello again!",
+"translation_key": "hello again!",
+"type": "dialogue"
+}
+}

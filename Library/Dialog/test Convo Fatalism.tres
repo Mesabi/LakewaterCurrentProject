@@ -1,0 +1,812 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 24
+syntax_version = 2
+raw_text = "~ this_is_a_node_title
+
+
+Unknown: ...
+Unknown: Get up. 
+Unknown: I will ask you 3 questions.
+Unknown: You will then go about your day.
+Unknown: You will answer these truthfully.
+- Say Nothing
+- Ask where you are.
+	Unknown: You are dreaming.
+Unknown: Question 1:
+Unknown: Do you feel subject to the Machinations of Fate?
+- Of Course, I am limited by actions outside of my control, and I am thus bound to certain outcomes.
+	Unknown: Are you sure? 
+	- Yes.
+		Unknown: Understood.
+	- No. 
+		Unknown: Explain your hesitation.
+		- I want to believe I am free... but I am know that I shouldn't be. I cannot fight fate.
+			Unknown: ...
+		- I can't really ever know, can I?
+			Unknown: ...
+		- I was saying what you wanted me to say.
+			Unknown: I asked you to answer truthfully. 
+			Unknown: This is a deviation from my commands.
+			#player takes damage. 
+	- ...
+		Unknown: I will continue
+- Of Course not, I am in control of my destiny. I, and I alone choose my path.
+	Unknown: Are you sure? 
+	- Yes.
+		Unknown: Confirmed.
+	- No. 
+		Unknown: Explain the hesitation.
+		- I want to believe I am free... but can I really know?
+			Unknown: ...
+		- What if I'm fated to believe I'm free?
+			Unknown: When you are in the middle of things, you can never quite know.
+Unknown: Question 2.
+Unknown: Is there such a thing as perfection?
+- Of course, there exists such a thing as a perfect outcome.
+	Unknown: Do you feel that this is the case for this conversation?
+	- Yes, there is an outcome that is 'more correct' in this series of questions.
+		Unknown: ...
+		Unknown: Let me account for this.
+		#player takes damage.
+		Unknown: Re-evalute your statement. Do you still believe there is an outcome that is 'more correct'?
+		- Yes
+			Unknown: ...
+			Unknown: Do you believe you are answering towards a perfect outcome?
+			-Yes FIX ME
+			#create a block elsewhere for this.
+			-No FIX ME
+		- No
+			Unknown: ...
+			Unknown: I will continue.
+	- Yes, the perfect outcome is that I tell the truth. 
+		Unknown: Have you done so?
+		- Yes
+			Unknown: Thank you for your honesty. 
+		- No
+			Unknown: ...
+			Unknown: I will account for this going forwards.
+	- No, while perfection exists, it is not omnipresent. Some things cannot be made perfect.
+		Unknown: I will continue,
+- No, perfection is subjective. 
+	Unknown: ...
+	
+Unknown: Question 3.
+Unknown: Are you immutable?
+- Yes, I am unable to change aspects of myself.
+- No, I am a fluid being and can change. 
+
+
+		
+
+
+
+Nathan: This is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => this_is_a_node_title
+- End the conversation => END
+Nathan: For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation."
+errors = [  ]
+titles = {
+"this_is_a_node_title": "3"
+}
+lines = {
+"0": {
+"next_id": "3",
+"text": "this_is_a_node_title",
+"type": "title"
+},
+"10": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "11",
+"parent_id": "9",
+"replacements": [  ],
+"text": "You are dreaming.",
+"translation_key": "You are dreaming.",
+"type": "dialogue"
+},
+"11": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "12",
+"replacements": [  ],
+"text": "Question 1:",
+"translation_key": "Question 1:",
+"type": "dialogue"
+},
+"12": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "13",
+"replacements": [  ],
+"text": "Do you feel subject to the Machinations of Fate?",
+"translation_key": "Do you feel subject to the Machinations of Fate?",
+"type": "dialogue"
+},
+"13": {
+"next_id": "14",
+"next_id_after": "39",
+"replacements": [  ],
+"responses": PoolStringArray( "13", "29" ),
+"text": "Of Course, I am limited by actions outside of my control, and I am thus bound to certain outcomes.",
+"translation_key": "Of Course, I am limited by actions outside of my control, and I am thus bound to certain outcomes.",
+"type": "response"
+},
+"14": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "15",
+"parent_id": "13",
+"replacements": [  ],
+"text": "Are you sure?",
+"translation_key": "Are you sure?",
+"type": "dialogue"
+},
+"15": {
+"next_id": "16",
+"next_id_after": "39",
+"parent_id": "13",
+"replacements": [  ],
+"responses": PoolStringArray( "15", "17", "27" ),
+"text": "Yes.",
+"translation_key": "Yes.",
+"type": "response"
+},
+"16": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "15",
+"replacements": [  ],
+"text": "Understood.",
+"translation_key": "Understood.",
+"type": "dialogue"
+},
+"17": {
+"next_id": "18",
+"next_id_after": "39",
+"parent_id": "13",
+"replacements": [  ],
+"text": "No.",
+"translation_key": "No.",
+"type": "response"
+},
+"18": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "19",
+"parent_id": "17",
+"replacements": [  ],
+"text": "Explain your hesitation.",
+"translation_key": "Explain your hesitation.",
+"type": "dialogue"
+},
+"19": {
+"next_id": "20",
+"next_id_after": "39",
+"parent_id": "17",
+"replacements": [  ],
+"responses": PoolStringArray( "19", "21", "23" ),
+"text": "I want to believe I am free... but I am know that I shouldn't be. I cannot fight fate.",
+"translation_key": "I want to believe I am free... but I am know that I shouldn't be. I cannot fight fate.",
+"type": "response"
+},
+"20": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "19",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"21": {
+"next_id": "22",
+"next_id_after": "39",
+"parent_id": "17",
+"replacements": [  ],
+"text": "I can't really ever know, can I?",
+"translation_key": "I can't really ever know, can I?",
+"type": "response"
+},
+"22": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "21",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"23": {
+"next_id": "24",
+"next_id_after": "39",
+"parent_id": "17",
+"replacements": [  ],
+"text": "I was saying what you wanted me to say.",
+"translation_key": "I was saying what you wanted me to say.",
+"type": "response"
+},
+"24": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "25",
+"parent_id": "23",
+"replacements": [  ],
+"text": "I asked you to answer truthfully.",
+"translation_key": "I asked you to answer truthfully.",
+"type": "dialogue"
+},
+"25": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "23",
+"replacements": [  ],
+"text": "This is a deviation from my commands.",
+"translation_key": "This is a deviation from my commands.",
+"type": "dialogue"
+},
+"27": {
+"next_id": "28",
+"next_id_after": "39",
+"parent_id": "13",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "response"
+},
+"28": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "27",
+"replacements": [  ],
+"text": "I will continue",
+"translation_key": "I will continue",
+"type": "dialogue"
+},
+"29": {
+"next_id": "30",
+"next_id_after": "39",
+"replacements": [  ],
+"text": "Of Course not, I am in control of my destiny. I, and I alone choose my path.",
+"translation_key": "Of Course not, I am in control of my destiny. I, and I alone choose my path.",
+"type": "response"
+},
+"3": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"30": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "31",
+"parent_id": "29",
+"replacements": [  ],
+"text": "Are you sure?",
+"translation_key": "Are you sure?",
+"type": "dialogue"
+},
+"31": {
+"next_id": "32",
+"next_id_after": "39",
+"parent_id": "29",
+"replacements": [  ],
+"responses": PoolStringArray( "31", "33" ),
+"text": "Yes.",
+"translation_key": "Yes.",
+"type": "response"
+},
+"32": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "31",
+"replacements": [  ],
+"text": "Confirmed.",
+"translation_key": "Confirmed.",
+"type": "dialogue"
+},
+"33": {
+"next_id": "34",
+"next_id_after": "39",
+"parent_id": "29",
+"replacements": [  ],
+"text": "No.",
+"translation_key": "No.",
+"type": "response"
+},
+"34": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "35",
+"parent_id": "33",
+"replacements": [  ],
+"text": "Explain the hesitation.",
+"translation_key": "Explain the hesitation.",
+"type": "dialogue"
+},
+"35": {
+"next_id": "36",
+"next_id_after": "39",
+"parent_id": "33",
+"replacements": [  ],
+"responses": PoolStringArray( "35", "37" ),
+"text": "I want to believe I am free... but can I really know?",
+"translation_key": "I want to believe I am free... but can I really know?",
+"type": "response"
+},
+"36": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "35",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"37": {
+"next_id": "38",
+"next_id_after": "39",
+"parent_id": "33",
+"replacements": [  ],
+"text": "What if I'm fated to believe I'm free?",
+"translation_key": "What if I'm fated to believe I'm free?",
+"type": "response"
+},
+"38": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "39",
+"parent_id": "37",
+"replacements": [  ],
+"text": "When you are in the middle of things, you can never quite know.",
+"translation_key": "When you are in the middle of things, you can never quite know.",
+"type": "dialogue"
+},
+"39": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "40",
+"replacements": [  ],
+"text": "Question 2.",
+"translation_key": "Question 2.",
+"type": "dialogue"
+},
+"4": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "5",
+"replacements": [  ],
+"text": "Get up.",
+"translation_key": "Get up.",
+"type": "dialogue"
+},
+"40": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "41",
+"replacements": [  ],
+"text": "Is there such a thing as perfection?",
+"translation_key": "Is there such a thing as perfection?",
+"type": "dialogue"
+},
+"41": {
+"next_id": "42",
+"next_id_after": "69",
+"replacements": [  ],
+"responses": PoolStringArray( "41", "66" ),
+"text": "Of course, there exists such a thing as a perfect outcome.",
+"translation_key": "Of course, there exists such a thing as a perfect outcome.",
+"type": "response"
+},
+"42": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "43",
+"parent_id": "41",
+"replacements": [  ],
+"text": "Do you feel that this is the case for this conversation?",
+"translation_key": "Do you feel that this is the case for this conversation?",
+"type": "dialogue"
+},
+"43": {
+"next_id": "44",
+"next_id_after": "69",
+"parent_id": "41",
+"replacements": [  ],
+"responses": PoolStringArray( "43", "57", "64" ),
+"text": "Yes, there is an outcome that is 'more correct' in this series of questions.",
+"translation_key": "Yes, there is an outcome that is 'more correct' in this series of questions.",
+"type": "response"
+},
+"44": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "45",
+"parent_id": "43",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"45": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "47",
+"parent_id": "43",
+"replacements": [  ],
+"text": "Let me account for this.",
+"translation_key": "Let me account for this.",
+"type": "dialogue"
+},
+"47": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "48",
+"parent_id": "43",
+"replacements": [  ],
+"text": "Re-evalute your statement. Do you still believe there is an outcome that is 'more correct'?",
+"translation_key": "Re-evalute your statement. Do you still believe there is an outcome that is 'more correct'?",
+"type": "dialogue"
+},
+"48": {
+"next_id": "49",
+"next_id_after": "69",
+"parent_id": "43",
+"replacements": [  ],
+"responses": PoolStringArray( "48", "54" ),
+"text": "Yes",
+"translation_key": "Yes",
+"type": "response"
+},
+"49": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "50",
+"parent_id": "48",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"5": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "6",
+"replacements": [  ],
+"text": "I will ask you 3 questions.",
+"translation_key": "I will ask you 3 questions.",
+"type": "dialogue"
+},
+"50": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "51",
+"parent_id": "48",
+"replacements": [  ],
+"text": "Do you believe you are answering towards a perfect outcome?",
+"translation_key": "Do you believe you are answering towards a perfect outcome?",
+"type": "dialogue"
+},
+"51": {
+"character": "",
+"next_id": "53",
+"parent_id": "48",
+"replacements": [  ],
+"text": "-Yes FIX ME",
+"translation_key": "-Yes FIX ME",
+"type": "dialogue"
+},
+"53": {
+"character": "",
+"next_id": "69",
+"parent_id": "48",
+"replacements": [  ],
+"text": "-No FIX ME",
+"translation_key": "-No FIX ME",
+"type": "dialogue"
+},
+"54": {
+"next_id": "55",
+"next_id_after": "69",
+"parent_id": "43",
+"replacements": [  ],
+"text": "No",
+"translation_key": "No",
+"type": "response"
+},
+"55": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "56",
+"parent_id": "54",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"56": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "69",
+"parent_id": "54",
+"replacements": [  ],
+"text": "I will continue.",
+"translation_key": "I will continue.",
+"type": "dialogue"
+},
+"57": {
+"next_id": "58",
+"next_id_after": "69",
+"parent_id": "41",
+"replacements": [  ],
+"text": "Yes, the perfect outcome is that I tell the truth.",
+"translation_key": "Yes, the perfect outcome is that I tell the truth.",
+"type": "response"
+},
+"58": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "59",
+"parent_id": "57",
+"replacements": [  ],
+"text": "Have you done so?",
+"translation_key": "Have you done so?",
+"type": "dialogue"
+},
+"59": {
+"next_id": "60",
+"next_id_after": "69",
+"parent_id": "57",
+"replacements": [  ],
+"responses": PoolStringArray( "59", "61" ),
+"text": "Yes",
+"translation_key": "Yes",
+"type": "response"
+},
+"6": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "7",
+"replacements": [  ],
+"text": "You will then go about your day.",
+"translation_key": "You will then go about your day.",
+"type": "dialogue"
+},
+"60": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "69",
+"parent_id": "59",
+"replacements": [  ],
+"text": "Thank you for your honesty.",
+"translation_key": "Thank you for your honesty.",
+"type": "dialogue"
+},
+"61": {
+"next_id": "62",
+"next_id_after": "69",
+"parent_id": "57",
+"replacements": [  ],
+"text": "No",
+"translation_key": "No",
+"type": "response"
+},
+"62": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "63",
+"parent_id": "61",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"63": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "69",
+"parent_id": "61",
+"replacements": [  ],
+"text": "I will account for this going forwards.",
+"translation_key": "I will account for this going forwards.",
+"type": "dialogue"
+},
+"64": {
+"next_id": "65",
+"next_id_after": "69",
+"parent_id": "41",
+"replacements": [  ],
+"text": "No, while perfection exists, it is not omnipresent. Some things cannot be made perfect.",
+"translation_key": "No, while perfection exists, it is not omnipresent. Some things cannot be made perfect.",
+"type": "response"
+},
+"65": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "69",
+"parent_id": "64",
+"replacements": [  ],
+"text": "I will continue,",
+"translation_key": "I will continue,",
+"type": "dialogue"
+},
+"66": {
+"next_id": "67",
+"next_id_after": "69",
+"replacements": [  ],
+"text": "No, perfection is subjective.",
+"translation_key": "No, perfection is subjective.",
+"type": "response"
+},
+"67": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "69",
+"parent_id": "66",
+"replacements": [  ],
+"text": "...",
+"translation_key": "...",
+"type": "dialogue"
+},
+"69": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "70",
+"replacements": [  ],
+"text": "Question 3.",
+"translation_key": "Question 3.",
+"type": "dialogue"
+},
+"7": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "8",
+"replacements": [  ],
+"text": "You will answer these truthfully.",
+"translation_key": "You will answer these truthfully.",
+"type": "dialogue"
+},
+"70": {
+"character": "Unknown",
+"character_replacements": [  ],
+"next_id": "71",
+"replacements": [  ],
+"text": "Are you immutable?",
+"translation_key": "Are you immutable?",
+"type": "dialogue"
+},
+"71": {
+"next_id": "79",
+"next_id_after": "79",
+"replacements": [  ],
+"responses": PoolStringArray( "71", "72" ),
+"text": "Yes, I am unable to change aspects of myself.",
+"translation_key": "Yes, I am unable to change aspects of myself.",
+"type": "response"
+},
+"72": {
+"next_id": "79",
+"next_id_after": "79",
+"replacements": [  ],
+"text": "No, I am a fluid being and can change.",
+"translation_key": "No, I am a fluid being and can change.",
+"type": "response"
+},
+"79": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "80",
+"replacements": [  ],
+"text": "This is some dialogue.",
+"translation_key": "This is some dialogue.",
+"type": "dialogue"
+},
+"8": {
+"next_id": "11",
+"next_id_after": "11",
+"replacements": [  ],
+"responses": PoolStringArray( "8", "9" ),
+"text": "Say Nothing",
+"translation_key": "Say Nothing",
+"type": "response"
+},
+"80": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "81",
+"replacements": [  ],
+"text": "Here are some choices.",
+"translation_key": "Here are some choices.",
+"type": "dialogue"
+},
+"81": {
+"next_id": "82",
+"next_id_after": "87",
+"replacements": [  ],
+"responses": PoolStringArray( "81", "83", "85", "86" ),
+"text": "First one",
+"translation_key": "First one",
+"type": "response"
+},
+"82": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "87",
+"parent_id": "81",
+"replacements": [  ],
+"text": "You picked the first one.",
+"translation_key": "You picked the first one.",
+"type": "dialogue"
+},
+"83": {
+"next_id": "84",
+"next_id_after": "87",
+"replacements": [  ],
+"text": "Second one",
+"translation_key": "Second one",
+"type": "response"
+},
+"84": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "87",
+"parent_id": "83",
+"replacements": [  ],
+"text": "You picked the second one.",
+"translation_key": "You picked the second one.",
+"type": "dialogue"
+},
+"85": {
+"next_id": "3",
+"next_id_after": "87",
+"replacements": [  ],
+"text": "Start again",
+"translation_key": "Start again",
+"type": "response"
+},
+"86": {
+"next_id": "end",
+"next_id_after": "87",
+"replacements": [  ],
+"text": "End the conversation",
+"translation_key": "End the conversation",
+"type": "response"
+},
+"87": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"translation_key": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"type": "dialogue"
+},
+"9": {
+"next_id": "10",
+"next_id_after": "11",
+"replacements": [  ],
+"text": "Ask where you are.",
+"translation_key": "Ask where you are.",
+"type": "response"
+}
+}

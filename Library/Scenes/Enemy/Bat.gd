@@ -269,7 +269,8 @@ func handleCollision(collide):
 	if(Colliding_Object.is_in_group("Repell")|| Colliding_Object.is_in_group("Player")):
 		velocity = velocity.rotated(self.rotation-PI)* 10
 		if(Colliding_Object.is_in_group("Player")):
-			hitPlayer(collide)
+			pass
+#			hitPlayer(collide)
 	#make sure you account for infighting later
 	if(Colliding_Object.is_in_group("Has_Health")):
 			Colliding_Object.get_node("Health_System").deductHealthAndKill(damage)

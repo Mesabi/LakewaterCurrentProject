@@ -2,7 +2,7 @@ extends Area2D
 
 
 # Declare member variables here. Examples:
-export onready var myDialog = preload("res://Library/Dialog/Test_This_NPC_2.tres")
+#export onready var myDialog = preload("res://Library/Dialog/Test_This_NPC_2.tres")
 
 
 # Called when the node enters the scene tree for the first time.

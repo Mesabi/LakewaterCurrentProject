@@ -1,19 +1,19 @@
 extends Node2D
+#used to run global operations. i.e. calling dialog, game objectives, score, timers, etc.
 
 
 
-var test = "test"
-
-var current_scene = null
-
-var has_met_nathan: bool = false
-
-var num = 0
+var current_scene = null#figure out what this does.
 
 
 
 
+var inInteraction : bool = false#keeps the player from triggering multiple interactions at once. 
+#note! I modified dialogue manager to change this when player is in dialog.
 
+#for global variables that affect story or levels, use States.gd
+
+var currentObjective = "Undefined"
 
 
 
@@ -30,8 +30,13 @@ var num = 0
 func getWorldManager():
 	return get_tree().get_root().get_node("Main").get_node("WorldManager")
 
+func setGlobalObjective():
+	getWorldManager().getHUD().updateObjective(currentObjective)
+	pass
+
 
 func loadLevel(worldManager: Node2D, scenePath: String) -> void:
+	#90% sure this is the only one of these that works	
 	var currentLevel = null
 
 	# Unload the current level if it exists
@@ -61,9 +66,11 @@ func loadLevel(worldManager: Node2D, scenePath: String) -> void:
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
+	#setGlobalObjective()
 #	print(current_scene)
 
-
+func some_function():
+	print("some function was callled")
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,
@@ -97,3 +104,15 @@ func _deferred_goto_scene(path):
 	var main = load("res://Main.tscn")
 	var Main = main.instance()
 	current_scene.add_child(Main)
+
+
+func doConversation(interact, line):
+	#interact must be a valid path
+	if(!inInteraction):
+		if(!interact == null):
+			var dlog = load(interact)
+			DialogueManager.show_example_dialogue_balloon(line, dlog)
+			inInteraction = true
+	
+
+

@@ -1,0 +1,126 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Library/Scenes/Environment/Platform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Library/Scenes/NPC.tscn" type="PackedScene" id=3]
+
+[node name="test-movement" type="Node2D"]
+position = Vector2( -197, 70 )
+
+[node name="Platform" parent="." instance=ExtResource( 1 )]
+position = Vector2( 134, 258 )
+
+[node name="Platform2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 634, 127 )
+
+[node name="Platform" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( 258, 2 )
+
+[node name="Platform2" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( 521, 0 )
+
+[node name="Platform3" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( 783, -2 )
+
+[node name="Platform4" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( 1040, -265 )
+
+[node name="Platform" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 258, 2 )
+
+[node name="Platform2" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 521, 0 )
+
+[node name="Platform3" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 783, -2 )
+
+[node name="Platform4" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 1039, 2 )
+
+[node name="Platform5" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 1302, 0 )
+
+[node name="Platform6" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 1564, -2 )
+
+[node name="Platform7" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 1807, -4 )
+
+[node name="Platform8" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 2070, -6 )
+
+[node name="Platform9" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 2332, -8 )
+
+[node name="Platform10" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 2588, -4 )
+
+[node name="Platform11" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 2851, -6 )
+
+[node name="Platform12" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 3113, -8 )
+
+[node name="Platform13" parent="Platform2/Platform4" instance=ExtResource( 1 )]
+position = Vector2( 3362, -11 )
+
+[node name="Platform" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 258, 2 )
+
+[node name="Platform2" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 521, 0 )
+
+[node name="Platform3" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 783, -2 )
+
+[node name="Platform4" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 1039, 2 )
+
+[node name="Platform5" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 1302, 0 )
+
+[node name="Platform6" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 1564, -2 )
+
+[node name="Platform7" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 1807, -4 )
+
+[node name="Platform8" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 2070, -6 )
+
+[node name="Platform9" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 2332, -8 )
+
+[node name="Platform10" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 2588, -4 )
+
+[node name="Platform11" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 2851, -6 )
+
+[node name="Platform12" parent="Platform2/Platform4/Platform13" instance=ExtResource( 1 )]
+position = Vector2( 3113, -8 )
+
+[node name="Platform5" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( -759, -255 )
+
+[node name="Platform6" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( -759, -517 )
+
+[node name="Platform7" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( -117, -919 )
+
+[node name="Platform8" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( -117, -1176 )
+
+[node name="Platform9" parent="Platform2" instance=ExtResource( 1 )]
+position = Vector2( 139, -751 )
+
+[node name="Platform3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 383, 372 )
+
+[node name="NPC" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1633, -351 )
+
+[node name="Dialog_Hook" parent="NPC" index="2"]
+myPath = "res://Library/Dialog/template.tres"
+
+[editable path="NPC"]

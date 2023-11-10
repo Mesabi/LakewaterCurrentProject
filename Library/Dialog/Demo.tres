@@ -1,0 +1,381 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 7
+syntax_version = 2
+raw_text = "~ this_is_a_node_title
+
+Me: We're setting this up so that you know what you're doing later.
+#https://github.com/nathanhoad/godot_dialogue_manager/blob/v1.x/docs/Writing_Dialogue.md
+This is a line said by nobody.
+Nathan: I am saying this line.
+Nathan: The value of some_variable is {{some_variable}}.
+Nathan: I will say this.
+% Nathan: And then I might say this
+% Nathan: Or maybe this
+% Nathan: Or even this?
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+	%3 Nathan: This line as a 60% chance of being picked
+	%2 Nathan: This line has an 40% chance of being picked
+- Second one
+	Nathan: You picked the second one.
+	
+Someone: Here is a thing you can do
+- Nathan: That's good to hear!
+- Nathan: That's definitely news
+#conditions
+Nathan: What would you like?
+- This one [if some_variable == 0]
+    Nathan: Ah, so you want this one?
+- Another one [if some_function()] => another_title
+- Nothing => END
+
+
+- Start again => this_is_a_node_title
+- End the conversation => END
+
+~ another_title
+
+Nathan: DONE!
+- End the conversation => END
+
+
+
+
+Nathan: For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation."
+errors = [  ]
+titles = {
+"another_title": "35",
+"this_is_a_node_title": "2"
+}
+lines = {
+"0": {
+"next_id": "2",
+"text": "this_is_a_node_title",
+"type": "title"
+},
+"10": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "11",
+"replacements": [  ],
+"text": "Or even this?",
+"translation_key": "Or even this?",
+"type": "dialogue"
+},
+"11": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "12",
+"replacements": [  ],
+"text": "Here are some choices.",
+"translation_key": "Here are some choices.",
+"type": "dialogue"
+},
+"12": {
+"next_id": "13",
+"next_id_after": "19",
+"replacements": [  ],
+"responses": PoolStringArray( "12", "16" ),
+"text": "First one",
+"translation_key": "First one",
+"type": "response"
+},
+"13": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "14",
+"parent_id": "12",
+"replacements": [  ],
+"text": "You picked the first one.",
+"translation_key": "You picked the first one.",
+"type": "dialogue"
+},
+"14": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "19",
+"parent_id": "12",
+"replacements": [  ],
+"siblings": [ {
+"id": "14",
+"weight": 3
+}, {
+"id": "15",
+"weight": 2
+} ],
+"text": "This line as a 60% chance of being picked",
+"translation_key": "This line as a 60% chance of being picked",
+"type": "dialogue"
+},
+"15": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "19",
+"parent_id": "12",
+"replacements": [  ],
+"text": "This line has an 40% chance of being picked",
+"translation_key": "This line has an 40% chance of being picked",
+"type": "dialogue"
+},
+"16": {
+"next_id": "17",
+"next_id_after": "19",
+"replacements": [  ],
+"text": "Second one",
+"translation_key": "Second one",
+"type": "response"
+},
+"17": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "19",
+"parent_id": "16",
+"replacements": [  ],
+"text": "You picked the second one.",
+"translation_key": "You picked the second one.",
+"type": "dialogue"
+},
+"19": {
+"character": "Someone",
+"character_replacements": [  ],
+"next_id": "20",
+"replacements": [  ],
+"text": "Here is a thing you can do",
+"translation_key": "Here is a thing you can do",
+"type": "dialogue"
+},
+"2": {
+"character": "Me",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "We're setting this up so that you know what you're doing later.",
+"translation_key": "We're setting this up so that you know what you're doing later.",
+"type": "dialogue"
+},
+"20": {
+"character": "Nathan",
+"next_id": "20.2",
+"next_id_after": "23",
+"replacements": [  ],
+"responses": PoolStringArray( "20", "21" ),
+"text": "That's good to hear!",
+"translation_key": "That's good to hear!",
+"type": "response"
+},
+"20.2": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "23",
+"next_id_after": "23",
+"replacements": [  ],
+"text": "That's good to hear!",
+"translation_key": "That's good to hear!",
+"type": "dialogue"
+},
+"21": {
+"character": "Nathan",
+"next_id": "21.2",
+"next_id_after": "23",
+"replacements": [  ],
+"text": "That's definitely news",
+"translation_key": "That's definitely news",
+"type": "response"
+},
+"21.2": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "23",
+"next_id_after": "23",
+"replacements": [  ],
+"text": "That's definitely news",
+"translation_key": "That's definitely news",
+"type": "dialogue"
+},
+"23": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "24",
+"replacements": [  ],
+"text": "What would you like?",
+"translation_key": "What would you like?",
+"type": "dialogue"
+},
+"24": {
+"condition": {
+"expression": [ {
+"type": "variable",
+"value": "some_variable"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 0
+} ]
+},
+"next_id": "25",
+"next_id_after": "25",
+"replacements": [  ],
+"responses": PoolStringArray( "24" ),
+"text": "This one",
+"translation_key": "This one",
+"type": "response"
+},
+"25": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "26",
+"replacements": [  ],
+"text": "Ah, so you want this one?",
+"translation_key": "Ah, so you want this one?",
+"type": "dialogue"
+},
+"26": {
+"condition": {
+"expression": [ {
+"function": "some_function",
+"type": "function",
+"value": [  ]
+} ]
+},
+"next_id": "35",
+"next_id_after": "end!",
+"replacements": [  ],
+"responses": PoolStringArray( "26", "27", "30", "31" ),
+"text": "Another one",
+"translation_key": "Another one",
+"type": "response"
+},
+"27": {
+"next_id": "end",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "Nothing",
+"translation_key": "Nothing",
+"type": "response"
+},
+"30": {
+"next_id": "2",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "Start again",
+"translation_key": "Start again",
+"type": "response"
+},
+"31": {
+"next_id": "end",
+"next_id_after": "end!",
+"replacements": [  ],
+"text": "End the conversation",
+"translation_key": "End the conversation",
+"type": "response"
+},
+"33": {
+"next_id": "35",
+"text": "another_title",
+"type": "title"
+},
+"35": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "36",
+"replacements": [  ],
+"text": "DONE!",
+"translation_key": "DONE!",
+"type": "dialogue"
+},
+"36": {
+"next_id": "end",
+"next_id_after": "41",
+"replacements": [  ],
+"responses": PoolStringArray( "36" ),
+"text": "End the conversation",
+"translation_key": "End the conversation",
+"type": "response"
+},
+"4": {
+"character": "",
+"next_id": "5",
+"replacements": [  ],
+"text": "This is a line said by nobody.",
+"translation_key": "This is a line said by nobody.",
+"type": "dialogue"
+},
+"41": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "",
+"replacements": [  ],
+"text": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"translation_key": "For more information about conditional dialogue, mutations, and all the fun stuff, see the online documentation.",
+"type": "dialogue"
+},
+"5": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "6",
+"replacements": [  ],
+"text": "I am saying this line.",
+"translation_key": "I am saying this line.",
+"type": "dialogue"
+},
+"6": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "7",
+"replacements": [ {
+"expression": [ {
+"type": "variable",
+"value": "some_variable"
+} ],
+"value_in_text": "{{some_variable}}"
+} ],
+"text": "The value of some_variable is {{some_variable}}.",
+"translation_key": "The value of some_variable is {{some_variable}}.",
+"type": "dialogue"
+},
+"7": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "8",
+"replacements": [  ],
+"text": "I will say this.",
+"translation_key": "I will say this.",
+"type": "dialogue"
+},
+"8": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "11",
+"replacements": [  ],
+"siblings": [ {
+"id": "8",
+"weight": 1
+}, {
+"id": "9",
+"weight": 1
+}, {
+"id": "10",
+"weight": 1
+} ],
+"text": "And then I might say this",
+"translation_key": "And then I might say this",
+"type": "dialogue"
+},
+"9": {
+"character": "Nathan",
+"character_replacements": [  ],
+"next_id": "11",
+"replacements": [  ],
+"text": "Or maybe this",
+"translation_key": "Or maybe this",
+"type": "dialogue"
+}
+}

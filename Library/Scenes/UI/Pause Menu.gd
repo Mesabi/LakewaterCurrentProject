@@ -10,6 +10,7 @@ func _ready():
 
 # Called when the node enters the scene tree for the first time.
 func _unhandled_input(event):
+	#this runs outside of game processes I think. I need to find the docs for this. 
 	if(Input.is_action_just_pressed("Pause")):
 		self.is_paused = !is_paused
 

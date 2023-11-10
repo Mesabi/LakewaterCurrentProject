@@ -1,16 +1,20 @@
 #extends dick
 
+#TODO NOTETAKING SPACE
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+#todo: 
+#BACK SHIT UP TO GIT!!!!!!!!!!!!!
+#1 organize scenes in file explorer. THEN refactor everything .-.
+# -managers should be in their own folder
+# -global and states need to be in their own folder <-done
+# -tests and random crap need to go in their own folder
+# - old scripts should go in their own folder
+# -delete or rename duplicate titled items
+# -scenes is too generic. decide on scripts + scenes on same folder or divide them
+#2 change player states to an enum.
+# - hold off on this until roughly all states have been figured out.
+#3 get state variables to properly interact with dialog
+# sort of done? refer to docs as necessary
+#4 update dialog manager to align with theme.
+# or at the very least, switch font. "II" looks like "||" currently. 
+#5 enemy paradigm
