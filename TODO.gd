@@ -4,7 +4,7 @@
 
 #todo: 
 #BACK SHIT UP TO GIT!!!!!!!!!!!!!
-#1 organize scenes in file explorer. THEN refactor everything .-.
+#DONE 1 organize scenes in file explorer. THEN refactor everything .-.
 # -managers should be in their own folder
 # -global and states need to be in their own folder <-done
 # -tests and random crap need to go in their own folder

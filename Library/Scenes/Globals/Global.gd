@@ -46,7 +46,7 @@ func loadLevel(worldManager: Node2D, scenePath: String) -> void:
 		worldManager.remove_child(currentLevel)
 	# Load the new level scene
 	var scene = load(scenePath)
-
+	print(scenePath)
 	# Instantiate the new level scene as a child of the World Manager
 	currentLevel = scene.instance()
 	currentLevel.name = "Level"
