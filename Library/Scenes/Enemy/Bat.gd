@@ -1,17 +1,17 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 ###Current ISSUE!!!!
 #need a reset if the lunge mechanic stops working!
-onready var lunge = preload("res://Library/Scenes/Enemy/Lunge Token.tscn")
+@onready var lunge = preload("res://Library/Scenes/Enemy/Lunge Token.tscn")
 #onready var makeTimer = preload("res://Library/Scenes/Timer.tscn")
-onready var multiTimer = $MultiTimer
+@onready var multiTimer = $MultiTimer
 #1 attack run times
 #2 pause after attack run / hit
 #3 lunge token timeout
 #4 
 
 
-onready var health = $Health_System
+@onready var health = $Health_System
 var speed = 10
 var damage = 10
 var velocity = Vector2()
@@ -33,9 +33,9 @@ var snapback
 var repeatedCollisions = 0
 
 
-onready var label = $Test_State
-onready var label2 = $Label_2
-onready var ass = $Face_Sprite/Ass
+@onready var label = $Test_State
+@onready var label2 = $Label_2
+@onready var ass = $Face_Sprite/Ass
 
 
 # Called when the node enters the scene tree for the first time.
@@ -205,7 +205,7 @@ func setAttackRun(delta):
 		#first instance sets this up.
 		attacking = true
 		if(target == null):
-			target = lunge.instance()
+			target = lunge.instantiate()
 		#snapback = lunge.instance()
 	
 		target.global_position = changePositionRandomly(getPlayerPos(), 25)
@@ -255,8 +255,8 @@ func hitPlayer(colliding_object):
 	velocity = Vector2.ZERO
 
 
-func _on_body_entered(body: PhysicsBody) -> void:
-	if body is KinematicBody:
+func _on_body_entered(body: PhysicsBody3D) -> void:
+	if body is CharacterBody3D:
 		print("body")
 
 func handleCollision(collide):
@@ -313,7 +313,7 @@ func beAlive():
 
 func changePositionRandomly(position: Vector2, amt: float) -> Vector2:
 	# Generate a random angle in radians
-	var angle = rand_range(0, 2 * PI)
+	var angle = randf_range(0, 2 * PI)
 	
 	# Calculate the direction vector
 	var direction = Vector2(cos(angle), sin(angle))

@@ -136,7 +136,7 @@ lines = {
 "next_id": "14",
 "next_id_after": "39",
 "replacements": [  ],
-"responses": PoolStringArray( "13", "29" ),
+"responses": PackedStringArray( "13", "29" ),
 "text": "Of Course, I am limited by actions outside of my control, and I am thus bound to certain outcomes.",
 "translation_key": "Of Course, I am limited by actions outside of my control, and I am thus bound to certain outcomes.",
 "type": "response"
@@ -156,7 +156,7 @@ lines = {
 "next_id_after": "39",
 "parent_id": "13",
 "replacements": [  ],
-"responses": PoolStringArray( "15", "17", "27" ),
+"responses": PackedStringArray( "15", "17", "27" ),
 "text": "Yes.",
 "translation_key": "Yes.",
 "type": "response"
@@ -195,7 +195,7 @@ lines = {
 "next_id_after": "39",
 "parent_id": "17",
 "replacements": [  ],
-"responses": PoolStringArray( "19", "21", "23" ),
+"responses": PackedStringArray( "19", "21", "23" ),
 "text": "I want to believe I am free... but I am know that I shouldn't be. I cannot fight fate.",
 "translation_key": "I want to believe I am free... but I am know that I shouldn't be. I cannot fight fate.",
 "type": "response"
@@ -309,7 +309,7 @@ lines = {
 "next_id_after": "39",
 "parent_id": "29",
 "replacements": [  ],
-"responses": PoolStringArray( "31", "33" ),
+"responses": PackedStringArray( "31", "33" ),
 "text": "Yes.",
 "translation_key": "Yes.",
 "type": "response"
@@ -348,7 +348,7 @@ lines = {
 "next_id_after": "39",
 "parent_id": "33",
 "replacements": [  ],
-"responses": PoolStringArray( "35", "37" ),
+"responses": PackedStringArray( "35", "37" ),
 "text": "I want to believe I am free... but can I really know?",
 "translation_key": "I want to believe I am free... but can I really know?",
 "type": "response"
@@ -413,7 +413,7 @@ lines = {
 "next_id": "42",
 "next_id_after": "69",
 "replacements": [  ],
-"responses": PoolStringArray( "41", "66" ),
+"responses": PackedStringArray( "41", "66" ),
 "text": "Of course, there exists such a thing as a perfect outcome.",
 "translation_key": "Of course, there exists such a thing as a perfect outcome.",
 "type": "response"
@@ -433,7 +433,7 @@ lines = {
 "next_id_after": "69",
 "parent_id": "41",
 "replacements": [  ],
-"responses": PoolStringArray( "43", "57", "64" ),
+"responses": PackedStringArray( "43", "57", "64" ),
 "text": "Yes, there is an outcome that is 'more correct' in this series of questions.",
 "translation_key": "Yes, there is an outcome that is 'more correct' in this series of questions.",
 "type": "response"
@@ -473,7 +473,7 @@ lines = {
 "next_id_after": "69",
 "parent_id": "43",
 "replacements": [  ],
-"responses": PoolStringArray( "48", "54" ),
+"responses": PackedStringArray( "48", "54" ),
 "text": "Yes",
 "translation_key": "Yes",
 "type": "response"
@@ -578,7 +578,7 @@ lines = {
 "next_id_after": "69",
 "parent_id": "57",
 "replacements": [  ],
-"responses": PoolStringArray( "59", "61" ),
+"responses": PackedStringArray( "59", "61" ),
 "text": "Yes",
 "translation_key": "Yes",
 "type": "response"
@@ -699,7 +699,7 @@ lines = {
 "next_id": "79",
 "next_id_after": "79",
 "replacements": [  ],
-"responses": PoolStringArray( "71", "72" ),
+"responses": PackedStringArray( "71", "72" ),
 "text": "Yes, I am unable to change aspects of myself.",
 "translation_key": "Yes, I am unable to change aspects of myself.",
 "type": "response"
@@ -725,7 +725,7 @@ lines = {
 "next_id": "11",
 "next_id_after": "11",
 "replacements": [  ],
-"responses": PoolStringArray( "8", "9" ),
+"responses": PackedStringArray( "8", "9" ),
 "text": "Say Nothing",
 "translation_key": "Say Nothing",
 "type": "response"
@@ -743,7 +743,7 @@ lines = {
 "next_id": "82",
 "next_id_after": "87",
 "replacements": [  ],
-"responses": PoolStringArray( "81", "83", "85", "86" ),
+"responses": PackedStringArray( "81", "83", "85", "86" ),
 "text": "First one",
 "translation_key": "First one",
 "type": "response"

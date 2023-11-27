@@ -87,7 +87,7 @@ lines = {
 "next_id_after": "42",
 "parent_id": "8",
 "replacements": [  ],
-"responses": PoolStringArray( "10", "14", "18" ),
+"responses": PackedStringArray( "10", "14", "18" ),
 "text": "...",
 "translation_key": "...",
 "type": "response"
@@ -211,7 +211,7 @@ lines = {
 "next_id_after": "42",
 "parent_id": "24",
 "replacements": [  ],
-"responses": PoolStringArray( "27", "30", "33", "36" ),
+"responses": PackedStringArray( "27", "30", "33", "36" ),
 "text": "I'm dreaming?",
 "translation_key": "I'm dreaming?",
 "type": "response"
@@ -460,7 +460,7 @@ lines = {
 "next_id": "9",
 "next_id_after": "42",
 "replacements": [  ],
-"responses": PoolStringArray( "8", "21", "24" ),
+"responses": PackedStringArray( "8", "21", "24" ),
 "text": "...",
 "translation_key": "...",
 "type": "response"

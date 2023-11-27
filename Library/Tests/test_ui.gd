@@ -1,15 +1,15 @@
 extends Control
 
-onready var weaponName = $Weapon/WeaponName
+@onready var weaponName = $Weapon/WeaponName
 var weaponNameText = "None Selected"
 
-onready var currentAmmo = $Weapon/CurrentAmmo
+@onready var currentAmmo = $Weapon/CurrentAmmo
 var currentAmmoText = 00
 
-onready var currentReload = $Weapon/CurrentReload
+@onready var currentReload = $Weapon/CurrentReload
 var currentReloadText = 00
 
-onready var currentHealth = $Status/CurrentHealth
+@onready var currentHealth = $Status/CurrentHealth
 var currentHealthText = 00
 
 func _ready():

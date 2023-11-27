@@ -1,10 +1,10 @@
 extends Node2D
 #todo fix collision / crunch code. 
-onready var closedBot = $Waypoints/ClosedBot
-onready var openBot = $Waypoints/OpenBot
-onready var bot = $DoorBot
+@onready var closedBot = $Waypoints/ClosedBot
+@onready var openBot = $Waypoints/OpenBot
+@onready var bot = $DoorBot
 
-onready var top = $Top
+@onready var top = $Top
 
 var doMove = true#change this to move the doors. 
 var isOpen = false

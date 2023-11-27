@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 
 
@@ -13,8 +13,8 @@ var velocity : Vector2
 var gravity = 32
 var jump = 20
 var motion = Vector2.ZERO#probably should rename this to velocity for consistency. 
-export var jumpforce = 400 # The jump force of the character
-export var jumpLength = .5
+@export var jumpforce = 400 # The jump force of the character
+@export var jumpLength = .5
 var jumpTime = 0
 
 
@@ -35,11 +35,11 @@ var yVel = 0
 
 
 
-onready var cam = $CanvasLayer/Camera2D
-onready var label1 = $CanvasLayer/Camera2D/Label1
-onready var label2 = $CanvasLayer/Camera2D/Label2
-onready var label3 = $CanvasLayer/Camera2D/Label3
-onready var facing = $sprite/facing
+@onready var cam = $CanvasLayer/Camera2D
+@onready var label1 = $CanvasLayer/Camera2D/Label1
+@onready var label2 = $CanvasLayer/Camera2D/Label2
+@onready var label3 = $CanvasLayer/Camera2D/Label3
+@onready var facing = $sprite/facing
 
 
 
@@ -191,7 +191,10 @@ func testInput(delta):
 			motion.x = lerp(motion.x, 0, 0.1)
 			stateStopRunR(activeR, activeL, activeD, isDash, isJump)
 	motion.y += gravity + delta # Always make the player fall down
-	motion = move_and_slide(motion, Vector2.UP)#move and slide is better for platformers. add hit boxes elsewhere.
+	set_velocity(motion)
+	set_up_direction(Vector2.UP)
+	move_and_slide()
+	motion = velocity#move and slide is better for platformers. add hit boxes elsewhere.
 
 	# Move and slide is a function which allows the kinematic body to detect
 	# collisions and move accordingly

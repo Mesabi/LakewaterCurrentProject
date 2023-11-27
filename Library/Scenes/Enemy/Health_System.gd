@@ -1,11 +1,11 @@
 extends Node2D
 
 
-export var points : int = 100
-export var isDead = false
+@export var points : int = 100
+@export var isDead = false
 
-export var hasMax = false
-export var pointMax = 100
+@export var hasMax = false
+@export var pointMax = 100
 
 
 

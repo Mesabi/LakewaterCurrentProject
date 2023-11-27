@@ -1,21 +1,21 @@
 extends Node2D
 
 # Letter A
-onready var a = $A
+@onready var a = $A
 # Letter B
-onready var b = $B
+@onready var b = $B
 # Letter C
-onready var c = $C
+@onready var c = $C
 # Letter D
-onready var d = $D
+@onready var d = $D
 # Letter E
-onready var e = $E
+@onready var e = $E
 # Letter F
-onready var f = $F
+@onready var f = $F
 # Letter G
-onready var g = $G
+@onready var g = $G
 # Letter H
-onready var h = $H
+@onready var h = $H
 
 var randomPositions
 

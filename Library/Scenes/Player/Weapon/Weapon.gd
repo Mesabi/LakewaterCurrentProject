@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var gatling = $Gatling_Gun
-onready var bullet_weapon = preload("res://Library/Scenes/Player/Weapon/Gatling_Gun/Gatling_Bullet.tscn")
+@onready var gatling = $Gatling_Gun
+@onready var bullet_weapon = preload("res://Library/Scenes/Player/Weapon/Gatling_Gun/Gatling_Bullet.tscn")
 var bullet_speed = 1000
 
 var beam
@@ -35,7 +35,7 @@ func shoot():
 	match current_weapon:
 		"gatling":
 		# code for gatling weapon
-			var thisBullet = bullet_weapon.instance()
+			var thisBullet = bullet_weapon.instantiate()
 			thisBullet.position = get_parent().get_global_position()
 			var rotation_relative = get_parent().get_parent().rotation
 			var forward_vector = Vector2(cos(rotation_relative), sin(rotation_relative))
@@ -49,7 +49,7 @@ func shoot():
 			#print(Vector2(bullet_speed, 0).rotated(rotation))
 		"beam":
 		# code for beam weapon
-			var thisBullet = bullet_weapon.instance()
+			var thisBullet = bullet_weapon.instantiate()
 			thisBullet.position = get_parent().get_global_position()
 			var rotation_relative = get_parent().get_parent().rotation
 			var forward_vector = Vector2(cos(rotation_relative), sin(rotation_relative))

@@ -8,7 +8,7 @@ enum PickupType {
 	KEY_A,
 }
 #I'm doing this as an enum mostly for ease in the editor. 
-export var item = PickupType.AMMO_G #this will be set to a list of default actions via export. 
+@export var item = PickupType.AMMO_G #this will be set to a list of default actions via export. 
 
 
 func do_Pickup(body):

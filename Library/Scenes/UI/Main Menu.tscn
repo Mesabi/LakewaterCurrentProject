@@ -5,9 +5,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="."]
-margin_left = 412.0
-margin_top = 148.0
-margin_right = 510.0
-margin_bottom = 179.0
+offset_left = 412.0
+offset_top = 148.0
+offset_right = 510.0
+offset_bottom = 179.0
 text = "This is the Title
 "

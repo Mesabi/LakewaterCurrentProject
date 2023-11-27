@@ -1,6 +1,6 @@
 extends Area2D
 
-export var goHere = ""
+@export var goHere = ""
 
 
 

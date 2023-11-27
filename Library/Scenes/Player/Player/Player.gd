@@ -1,4 +1,8 @@
-extends KinematicBody2D
+extends CharacterBody2D
+
+#lerp broke 3->4 needs replacement
+
+
 
 ###INPUTS###
 var oldMotion = Vector2()
@@ -15,12 +19,12 @@ var isJump = false
 var isDash = false
 
 var speed = 750
-var velocity : Vector2
+#var velocity : Vector2
 var gravity = 32
 var jump = 20
 var motion = Vector2.ZERO#probably should rename this to velocity for consistency. 
-export var jumpforce = 400 # The jump force of the character
-export var jumpLength = .5
+@export var jumpforce = 400 # The jump force of the character
+@export var jumpLength = .5
 var jumpTime = 0
 
 
@@ -43,18 +47,18 @@ var xVel = 0
 var yVel = 0
 
 
-onready var stillAttack = preload("res://Library/Scenes/Player/Weapon/Sword/StillAttack.tscn")
+@onready var stillAttack = preload("res://Library/Scenes/Player/Weapon/Sword/StillAttack.tscn")
 var thisAttack = null
 
-onready var attackPosL = $Attack/AttackPosLeft
-onready var attackPosR = $Attack/AttackPosRight
+@onready var attackPosL = $Attack/AttackPosLeft
+@onready var attackPosR = $Attack/AttackPosRight
 
 
-onready var cam = $CanvasLayer/Camera2D
-onready var label1 = $CanvasLayer/Camera2D/Label1
-onready var label2 = $CanvasLayer/Camera2D/Label2
-onready var label3 = $CanvasLayer/Camera2D/Label3
-onready var facing = $sprite/facing
+@onready var cam = $CanvasLayer/Camera2D
+@onready var label1 = $CanvasLayer/Camera2D/Label1
+@onready var label2 = $CanvasLayer/Camera2D/Label2
+@onready var label3 = $CanvasLayer/Camera2D/Label3
+@onready var facing = $sprite/facing
 
 var interactResource = null
 var interactAction = null
@@ -70,9 +74,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	label1.text = "x : "+String(motion.x) + "y : " + String(motion.y)
-	label2.text = String(dashTime)
-	label3.text = String(state)
+	label1.text = "x : "+str(motion.x) + "y : " + str(motion.y)
+	label2.text = str(dashTime)
+	label3.text = str(state)
 
 	#velocity = Vector2.ZERO
 	cam.position = self.position
@@ -95,8 +99,9 @@ func getInput(delta):
 	isDash = false
 	
 ###Input Map
-	if Input.is_action_just_pressed("TEST"):
-		thisAttack = stillAttack.instance()
+	if false:
+		#Input.is_action_just_pressed("TEST"):
+		thisAttack = stillAttack.instantiate()
 		thisAttack.global_position = attackPosL.global_position#change to attackpos later
 		thisAttack.test()
 	#current issue is it's doing that thing where GP.self =/= GP.spawn
@@ -148,7 +153,7 @@ func getInput(delta):
 		
 		
 	if(!activeR && !activeL): # If none of these are pressed
-		motion.x = lerp(motion.x, 0, 0.1) # set the x to 0 by smoothly transitioning by 0.25
+		motion.x = 0# lerp(motion.x, 0, 0.1) # set the x to 0 by smoothly transitioning by 0.25
 
 
 	#resetDash(delta)
@@ -162,7 +167,7 @@ func move(delta):
 			if(abs(motion.x) > 10):
 				motion *= .8
 			else:
-				 motion.x = 0
+				motion.x = 0
 			stateIdle()
 		"interact":
 			stateInteract(activeI)
@@ -195,7 +200,7 @@ func move(delta):
 			motion.x = speed
 			stateFallR()
 		"fallN":
-			motion.x = lerp(motion.x, 0, 0.01)
+			motion.x = 0#lerp(motion.x, 0, 0.01)
 			#no modification to vectors
 			stateFallN()
 		"jumpN":
@@ -203,7 +208,7 @@ func move(delta):
 			#as is, this creates a a hard stop.
 			jumpTime -= delta
 			motion.y = -jumpforce
-			motion.x = lerp(motion.x, 0, 0.001)
+			motion.x = 0#lerp(motion.x, 0, 0.001)
 			stateJumpN()
 		"dashR":
 			dashTime -= delta
@@ -216,17 +221,20 @@ func move(delta):
 			motion.x = -dashForce
 			stateDashL()
 		"stopRunL":
-			motion.x = lerp(motion.x, 0, 0.1)
+			motion.x = 0#lerp(motion.x, 0, 0.1)
 			stateStopRunL()
 		"stopRunR":
-			motion.x = lerp(motion.x, 0, 0.1)
+			motion.x = 0#lerp(motion.x, 0, 0.1)
 			stateStopRunR()
 			
 			
 			
 			
 	motion.y += gravity + delta # Always make the player fall down
-	motion = move_and_slide(motion, Vector2.UP)#move and slide is better for platformers. add hit boxes elsewhere.
+	set_velocity(motion)
+	set_up_direction(Vector2.UP)
+	move_and_slide()
+	motion = velocity#move and slide is better for platformers. add hit boxes elsewhere.
 	handleAttack()
 	# Move and slide is a function which allows the kinematic body to detect
 	# collisions and move accordingly

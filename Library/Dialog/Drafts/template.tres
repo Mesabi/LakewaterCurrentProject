@@ -106,7 +106,7 @@ lines = {
 "next_id": "5",
 "next_id_after": "14",
 "replacements": [  ],
-"responses": PoolStringArray( "4", "8", "12", "13" ),
+"responses": PackedStringArray( "4", "8", "12", "13" ),
 "text": "Increase by 1",
 "translation_key": "Increase by 1",
 "type": "response"

@@ -1,12 +1,12 @@
 extends Node2D
 
-export var healthPack = 0
+@export var healthPack = 0
 # Declare member variables here. Examples:
-export var gatlingAmmo = 0
-export var beamAmmo = 0
-export var homingAmmo = 0
-export var waveAmmo = 0
-export var missiles = 0
+@export var gatlingAmmo = 0
+@export var beamAmmo = 0
+@export var homingAmmo = 0
+@export var waveAmmo = 0
+@export var missiles = 0
 
 
 

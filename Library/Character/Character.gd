@@ -1,10 +1,10 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 
 # Declare member variables here. Examples:
 var speed = 20000
 var velocity : Vector2
-onready var cam = $CanvasLayer/Camera2D
+@onready var cam = $CanvasLayer/Camera2D
 
 
 var interactResource = ""
@@ -43,7 +43,8 @@ func _physics_process(delta):
 	# Applying movement
 	velocity *= speed * delta
 	velocity.y += delta * 3200
-	move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
 
 	get_Input(delta)
 #	if(velocity != Vector2.ZERO):

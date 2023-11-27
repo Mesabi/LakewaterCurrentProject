@@ -1,7 +1,7 @@
 extends Node2D
 
 
-export var time = 0
+@export var time = 0
 var timer: Timer
 var done = false
 var start = false
@@ -20,7 +20,7 @@ func measureTime():
 	timer = Timer.new()
 	timer.wait_time = time
 	add_child(timer)
-	timer.connect("timeout", self, "_on_Timer_timeout")
+	timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
 	timer.start()
 	print("timer start")
 

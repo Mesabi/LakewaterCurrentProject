@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-onready var test = $Label
+@onready var test = $Label
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

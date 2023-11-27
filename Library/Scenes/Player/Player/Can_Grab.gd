@@ -6,7 +6,7 @@ extends Node2D
 # var b = "text"
 var canGrab = true
 var isGrabbing = false
-onready var mySprite = $Sprite
+@onready var mySprite = $Sprite2D
 
 
 func returnStatus():

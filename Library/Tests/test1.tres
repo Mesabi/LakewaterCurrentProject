@@ -58,7 +58,7 @@ lines = {
 "next_id": "13",
 "next_id_after": "17",
 "replacements": [  ],
-"responses": PoolStringArray( "12", "14", "16" ),
+"responses": PackedStringArray( "12", "14", "16" ),
 "text": "First one",
 "translation_key": "First one",
 "type": "response"
@@ -119,7 +119,7 @@ lines = {
 "next_id": "end",
 "next_id_after": "19",
 "replacements": [  ],
-"responses": PoolStringArray( "18" ),
+"responses": PackedStringArray( "18" ),
 "text": "End the conversation",
 "translation_key": "End the conversation",
 "type": "response"

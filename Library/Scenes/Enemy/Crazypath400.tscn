@@ -9,62 +9,62 @@ script = ExtResource( 1 )
 position = Vector2( 150, 0 )
 
 [node name="Label" type="Label" parent="A"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "<>"
 
 [node name="B" type="Node2D" parent="."]
 position = Vector2( 100, 100 )
 
 [node name="Label" type="Label" parent="B"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "<>"
 
 [node name="C" type="Node2D" parent="."]
 position = Vector2( 100, -100 )
 
 [node name="Label" type="Label" parent="C"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "<>"
 
 [node name="D" type="Node2D" parent="."]
 position = Vector2( 200, 100 )
 
 [node name="Label" type="Label" parent="D"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "<>"
 
 [node name="E" type="Node2D" parent="."]
 position = Vector2( 200, -100 )
 
 [node name="Label" type="Label" parent="E"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "<>"
 
 [node name="F" type="Node2D" parent="."]
 position = Vector2( 300, 100 )
 
 [node name="Label" type="Label" parent="F"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "<>"
 
 [node name="G" type="Node2D" parent="."]
 position = Vector2( 300, -100 )
 
 [node name="Label" type="Label" parent="G"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "<>"
 
 [node name="H" type="Node2D" parent="."]
 position = Vector2( 250, 0 )
 
 [node name="Label" type="Label" parent="H"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 text = "h"

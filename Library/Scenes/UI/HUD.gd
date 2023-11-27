@@ -1,8 +1,8 @@
 extends Control
 
 
-onready var healthCount = $Main_Panel/Health_Count
-onready var objectiveField = $Main_Panel/Objective_Field
+@onready var healthCount = $Main_Panel/Health_Count
+@onready var objectiveField = $Main_Panel/Objective_Field
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +12,7 @@ func _ready():
 
 
 func updateHealth(amt):
-	healthCount.text = String(amt)
+	healthCount.text = str(amt)
 	
 func updateObjective(here):
-	objectiveField.text = String(here)
+	objectiveField.text = str(here)

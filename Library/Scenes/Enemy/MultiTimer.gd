@@ -1,19 +1,19 @@
 extends Node2D
 # currently running this with 5 potential timers, might add more.
 
-onready var cooldownOne = $TimerOne
+@onready var cooldownOne = $TimerOne
 var cooldownOneActive : bool = false
 
-onready var cooldownTwo = $TimerTwo
+@onready var cooldownTwo = $TimerTwo
 var cooldownTwoActive : bool = false
 
-onready var cooldownThree = $TimerThree
+@onready var cooldownThree = $TimerThree
 var cooldownThreeActive : bool = false
 
-onready var cooldownFour = $TimerFour
+@onready var cooldownFour = $TimerFour
 var cooldownFourActive : bool = false
 
-onready var cooldownFive = $TimerFive
+@onready var cooldownFive = $TimerFive
 var cooldownFiveActive : bool = false
 
 # Called when the node enters the scene tree for the first time.

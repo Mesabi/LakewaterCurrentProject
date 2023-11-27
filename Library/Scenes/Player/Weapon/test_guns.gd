@@ -4,8 +4,8 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var firepoint = $firepoint
-onready var gatling = $Gatling_Gun
+@onready var firepoint = $firepoint
+@onready var gatling = $Gatling_Gun
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

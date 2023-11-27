@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 
-onready var myShape = $CollisionShape2D
+@onready var myShape = $CollisionShape2D
 
 var open = false
 var locked = false

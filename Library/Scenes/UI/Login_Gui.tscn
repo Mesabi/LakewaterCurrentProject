@@ -5,45 +5,45 @@
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_scale = Vector2( 5.87279, 2.60241 )
+scale = Vector2( 5.87279, 2.60241 )
 theme = ExtResource( 1 )
 
 [node name="Panel2" type="Panel" parent="."]
-margin_left = 22.9874
-margin_top = 5.37963
-margin_right = 62.9874
-margin_bottom = 45.3796
-rect_scale = Vector2( 3.11259, 1.73479 )
+offset_left = 22.9874
+offset_top = 5.37963
+offset_right = 62.9874
+offset_bottom = 45.3796
+scale = Vector2( 3.11259, 1.73479 )
 
 [node name="Label" type="Label" parent="Panel2"]
-margin_left = 3.11823
-margin_top = 11.0751
-margin_right = 154.118
-margin_bottom = 29.0751
-rect_scale = Vector2( 0.227554, 1 )
+offset_left = 3.11823
+offset_top = 11.0751
+offset_right = 154.118
+offset_bottom = 29.0751
+scale = Vector2( 0.227554, 1 )
 text = "System Start"
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 44.9531
-margin_top = 97.9861
-margin_right = 84.9531
-margin_bottom = 137.986
-rect_scale = Vector2( 1.94824, 2.04623 )
+offset_left = 44.9531
+offset_top = 97.9861
+offset_right = 84.9531
+offset_bottom = 137.986
+scale = Vector2( 1.94824, 2.04623 )
 
 [node name="Button" type="Button" parent="Panel"]
-margin_left = 9.61402
-margin_top = 21.7835
-margin_right = 110.938
-margin_bottom = 64.0345
-rect_scale = Vector2( 0.213536, 0.373631 )
+offset_left = 9.61402
+offset_top = 21.7835
+offset_right = 110.938
+offset_bottom = 64.0345
+scale = Vector2( 0.213536, 0.373631 )
 text = "enter"
 
 [node name="LineEdit" type="LineEdit" parent="Panel"]
-margin_left = 8.91482
-margin_top = 3.56801
-margin_right = 95.7803
-margin_bottom = 43.0023
-rect_scale = Vector2( 0.27226, 0.370972 )
+offset_left = 8.91482
+offset_top = 3.56801
+offset_right = 95.7803
+offset_bottom = 43.0023
+scale = Vector2( 0.27226, 0.370972 )
 text = "test"
 editable = false
 expand_to_text_length = true

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var segment = preload("res://Library/Scenes/Player/Weapon/Beam Segment.tscn")
+@onready var segment = preload("res://Library/Scenes/Player/Weapon/Beam Segment.tscn")
 
 
 # Declare member variables here. Examples:
@@ -22,9 +22,9 @@ func _process(delta):
 
 
 
-func instanceSegment(var pos, var times):
+func instanceSegment(pos, times):
 	print(times)
-	var next = segment.instance()
+	var next = segment.instantiate()
 	times = times - 1
 	next.position = pos
 	add_child(next)

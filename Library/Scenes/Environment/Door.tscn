@@ -1,19 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Library/Assets/Graphics/Solid/SmallSq.png" type="Texture" id=1]
+[ext_resource path="res://Library/Assets/Graphics/Solid/SmallSq.png" type="Texture2D" id=1]
 [ext_resource path="res://Library/Scenes/Environment/Door.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.5, 56.5 )
+size = Vector2( 12.5, 56.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 125, 120 )
+size = Vector2( 125, 120 )
 
 [node name="Door" type="StaticBody2D" groups=["Repell"]]
 collision_mask = 31
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="." groups=["Repell"]]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Repell"]]
 modulate = Color( 0, 0.717647, 1, 1 )
 position = Vector2( 0, 1.90735e-06 )
 scale = Vector2( 0.1, 0.45 )
@@ -23,7 +23,7 @@ texture = ExtResource( 1 )
 position = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
-[node name="Edge" type="Sprite" parent="." groups=["Repell"]]
+[node name="Edge" type="Sprite2D" parent="." groups=["Repell"]]
 position = Vector2( 0, 71 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
@@ -35,7 +35,7 @@ collision_mask = 31
 position = Vector2( 5.00001, 6.10352e-05 )
 shape = SubResource( 2 )
 
-[node name="Edge2" type="Sprite" parent="." groups=["Repell"]]
+[node name="Edge2" type="Sprite2D" parent="." groups=["Repell"]]
 position = Vector2( 0, -71 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )

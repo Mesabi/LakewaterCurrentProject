@@ -9,7 +9,7 @@ var current_scene = null#figure out what this does.
 
 
 var inInteraction : bool = false#keeps the player from triggering multiple interactions at once. 
-#note! I modified dialogue manager to change this when player is in dialog.
+#note! I modified dialogue manager to change this when player is in dialog. NOTE GD4 Update broke this.
 
 #for global variables that affect story or levels, use States.gd
 
@@ -38,19 +38,23 @@ func setGlobalObjective():
 func loadLevel(worldManager: Node2D, scenePath: String) -> void:
 	#90% sure this is the only one of these that works	
 	var currentLevel = null
-
+	
 	# Unload the current level if it exists
 	if worldManager.has_node("Level"):
 		currentLevel = worldManager.get_node("Level")
 		currentLevel.queue_free()
 		worldManager.remove_child(currentLevel)
 	# Load the new level scene
+	if(scenePath == null):
+		#this needs the ability added to scan for existing levels, and make sure the path is valid.
+		scenePath = "res://Library/Levels/Error.tscn"
 	var scene = load(scenePath)
-	print(scenePath)
+	#print(scenePath)
 	# Instantiate the new level scene as a child of the World Manager
-	currentLevel = scene.instance()
+	currentLevel = scene.instantiate()
 	currentLevel.name = "Level"
 	worldManager.add_child(currentLevel)
+	print(currentLevel.name)
 
 
 
@@ -94,7 +98,7 @@ func _deferred_goto_scene(path):
 	var s = ResourceLoader.load(path)
 	print(s)
 	# Instance the new scene.
-	current_scene = s.instance()
+	current_scene = s.instantiate()
 
 	# Add it to the active scene, as child of root.
 	get_tree().get_root().add_child(current_scene)
@@ -102,7 +106,7 @@ func _deferred_goto_scene(path):
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 	var main = load("res://Main.tscn")
-	var Main = main.instance()
+	var Main = main.instantiate()
 	current_scene.add_child(Main)
 
 

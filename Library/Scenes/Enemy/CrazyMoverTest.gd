@@ -1,9 +1,9 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var speed = 10
 var damage = 10
 var velocity = Vector2()
-onready var CrazyPath400 = preload("res://Library/Scenes/Enemy/Crazypath400.tscn")
+@onready var CrazyPath400 = preload("res://Library/Scenes/Enemy/Crazypath400.tscn")
 var doingPath = false
 var pathPos
 var target
@@ -36,7 +36,7 @@ func doCrazyMove():
 	
 	
 func generateCrazyPath():
-	var path = CrazyPath400.instance()
+	var path = CrazyPath400.instantiate()
 	path.global_position = self.global_position
 	self.get_parent().add_child(path)
 	pathPos  = path.giveCrazyPath400()

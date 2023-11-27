@@ -1,7 +1,7 @@
 extends Area2D
 
 #Interact must be attached to an object that also has a dialog_hook
-export var doForceInteract = false
+@export var doForceInteract = false
 #rethink this var... export var removeAfterInteract = false #this will only work if Interact is forced.
 # Called when the node enters the scene tree for the first time.
 func _ready():

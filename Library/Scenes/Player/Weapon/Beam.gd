@@ -20,7 +20,7 @@ func _process(delta):
 		distance_traveled += delta * growth_speed
 		var end_pos = start_pos + direction * distance_traveled
 		raycast.enabled = true
-		raycast.cast_to = end_pos - start_pos
+		raycast.target_position = end_pos - start_pos
 		raycast.position = start_pos
 		if raycast.is_colliding():
 			end_pos = raycast.get_collision_point()

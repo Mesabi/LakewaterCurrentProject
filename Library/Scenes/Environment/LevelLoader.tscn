@@ -9,6 +9,6 @@ script = ExtResource( 2 )
 [node name="Current_Level" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="."]
-margin_right = 268.0
-margin_bottom = 14.0
+offset_right = 268.0
+offset_bottom = 14.0
 text = "If you can see this, there was a load error:"

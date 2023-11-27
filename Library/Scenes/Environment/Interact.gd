@@ -1,6 +1,6 @@
 extends Area2D
 #DO NOT USE THIS, USE OBJECT INTERACT INSTEAD
-export var doThis : String = "asdf"
+@export var doThis : String = "asdf"
 
 signal bob
 

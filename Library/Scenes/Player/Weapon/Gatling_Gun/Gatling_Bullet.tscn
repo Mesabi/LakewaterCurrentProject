@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Library/Scenes/Player/Weapon/Gatling_Gun/Gatling_Bullet.gd" type="Script" id=1]
-[ext_resource path="res://Library/Assets/Graphics/Solid/Circle_Solid.png" type="Texture" id=2]
-[ext_resource path="res://Library/Assets/Graphics/White_Edited/Arrow.png" type="Texture" id=3]
+[ext_resource path="res://Library/Assets/Graphics/Solid/Circle_Solid.png" type="Texture2D" id=2]
+[ext_resource path="res://Library/Assets/Graphics/White_Edited/Arrow.png" type="Texture2D" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -18,11 +18,11 @@ script = ExtResource( 1 )
 [node name="My_Area" type="CollisionShape2D" parent="." groups=["Bullet"]]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." groups=["Bullet"]]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Bullet"]]
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 2 )
 
-[node name="Sprite2" type="Sprite" parent="." groups=["Bullet"]]
+[node name="Sprite2" type="Sprite2D" parent="." groups=["Bullet"]]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -1.90735e-06, 0 )
 scale = Vector2( 0.0569999, -0.0451118 )

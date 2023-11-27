@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Library/Assets/Graphics/Wreckage.png" type="Texture" id=1]
+[ext_resource path="res://Library/Assets/Graphics/Wreckage.png" type="Texture2D" id=1]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 40.0
@@ -11,7 +11,7 @@ position = Vector2( -1, 0 )
 collision_mask = 31
 gravity_scale = 0.0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -0.307736
 texture = ExtResource( 1 )
 

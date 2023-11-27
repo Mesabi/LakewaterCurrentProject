@@ -1,75 +1,98 @@
-extends Node
+## A line of dialogue returned from [code]DialogueManager[/code].
+class_name DialogueLine extends RefCounted
 
-const DialogueConstants = preload("res://addons/dialogue_manager/constants.gd")
-const DialogueParser = preload("res://addons/dialogue_manager/components/parser.gd")
 
-var dialogue_manager
+const _DialogueConstants = preload("./constants.gd")
 
-var type: String = DialogueConstants.TYPE_DIALOGUE
-var next_id: String
-var translation_key: String
 
-var mutation: Dictionary
+## The ID of this line
+var id: String
 
-var character: String
-var character_replacements: Array
-var dialogue: String
-var replacements: Array
+## The internal type of this dialogue object. One of [code]TYPE_DIALOGUE[/code] or [code]TYPE_MUTATION[/code]
+var type: String = _DialogueConstants.TYPE_DIALOGUE
 
-var responses: Array = []
+## The next line ID after this line.
+var next_id: String = ""
 
+## The character name that is saying this line.
+var character: String = ""
+
+## A dictionary of variable replacements fo the character name. Generally for internal use only.
+var character_replacements: Array[Dictionary] = []
+
+## The dialogue being spoken.
+var text: String = ""
+
+## A dictionary of replacements for the text. Generally for internal use only.
+var text_replacements: Array[Dictionary] = []
+
+## The key to use for translating this line.
+var translation_key: String = ""
+
+## A map for when and for how long to pause while typing out the dialogue text.
 var pauses: Dictionary = {}
-var speeds: Array = []
-var inline_mutations: Array = []
 
-var time = null
+## A map for speed changes when typing out the dialogue text.
+var speeds: Dictionary = {}
 
+## A map of any mutations to run while typing out the dialogue text.
+var inline_mutations: Array[Array] = []
 
-func _init(data: Dictionary, should_translate: bool = true, manager = null) -> void:
-	dialogue_manager = manager
-	
-	type = data.get("type")
-	next_id = data.get("next_id")
-	
-	match data.get("type"):
-		DialogueConstants.TYPE_DIALOGUE:
-			# Our bbcodes need to be process after text has been resolved so that the markers are at the correct index
-			var text = dialogue_manager.get_with_replacements(tr(data.get("translation_key")) if should_translate else data.get("text"), data.get("replacements"))
-			var parser = DialogueParser.new()
-			var markers = parser.extract_markers(text)
-			parser.free()
-			
-			character = data.get("character")
-			character_replacements = data.get("character_replacements", [])
-			dialogue = markers.get("text")
-			translation_key = data.get("translation_key")
-			replacements = data.get("replacements", [])
-			pauses = markers.get("pauses")
-			speeds = markers.get("speeds")
-			inline_mutations = markers.get("mutations")
-			time = markers.get("time")
-			
-		DialogueConstants.TYPE_MUTATION:
-			mutation = data.get("mutation")
+## A list of responses attached to this line of dialogue.
+var responses: Array[DialogueResponse] = []
+
+## A list of any extra game states to check when resolving variables and mutations.
+var extra_game_states: Array = []
+
+## How long to show this line before advancing to the next. Either a float (of seconds), [code]"auto"[/code], or [code]null[/code].
+var time: String = ""
+
+## Any #tags that were included in the line
+var tags: PackedStringArray = []
+
+## The mutation details if this is a mutation line (where [code]type == TYPE_MUTATION[/code]).
+var mutation: Dictionary = {}
+
+## The conditions to check before including this line in the flow of dialogue. If failed the line will be skipped over.
+var conditions: Dictionary = {}
 
 
-func get_pause(index: int) -> float:
-	return pauses.get(index, 0)
+func _init(data: Dictionary = {}) -> void:
+	if data.size() > 0:
+		id = data.id
+		next_id = data.next_id
+		type = data.type
+		extra_game_states = data.extra_game_states
+
+		match type:
+			_DialogueConstants.TYPE_DIALOGUE:
+				character = data.character
+				character_replacements = data.character_replacements
+				text = data.text
+				text_replacements = data.text_replacements
+				translation_key = data.translation_key
+				pauses = data.pauses
+				speeds = data.speeds
+				inline_mutations = data.inline_mutations
+				time = data.time
+				tags = data.tags
+
+			_DialogueConstants.TYPE_MUTATION:
+				mutation = data.mutation
 
 
-func get_speed(index: int) -> float:
-	var speed = 1
-	for s in speeds:
-		if s[0] > index:
-			return speed
-		speed = s[1]
-	return speed
+func _to_string() -> String:
+	match type:
+		_DialogueConstants.TYPE_DIALOGUE:
+			return "<DialogueLine character=\"%s\" text=\"%s\">" % [character, text]
+		_DialogueConstants.TYPE_MUTATION:
+			return "<DialogueLine mutation>"
+	return ""
 
 
-func mutate_inline_mutations(index: int) -> void:
-	for inline_mutation in inline_mutations:
-		# inline mutations are an array of arrays in the form of [character index, resolvable function]
-		if inline_mutation[0] > index:
-			return
-		if inline_mutation[0] == index:
-			dialogue_manager.mutate(inline_mutation[1])
+func get_tag_value(tag_name: String) -> String:
+	var wrapped := "%s=" % tag_name
+	for t in tags:
+		if t.begins_with(wrapped):
+			return t.replace(wrapped, "").strip_edges()
+	return ""

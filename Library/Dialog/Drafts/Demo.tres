@@ -81,7 +81,7 @@ lines = {
 "next_id": "13",
 "next_id_after": "19",
 "replacements": [  ],
-"responses": PoolStringArray( "12", "16" ),
+"responses": PackedStringArray( "12", "16" ),
 "text": "First one",
 "translation_key": "First one",
 "type": "response"
@@ -164,7 +164,7 @@ lines = {
 "next_id": "20.2",
 "next_id_after": "23",
 "replacements": [  ],
-"responses": PoolStringArray( "20", "21" ),
+"responses": PackedStringArray( "20", "21" ),
 "text": "That's good to hear!",
 "translation_key": "That's good to hear!",
 "type": "response"
@@ -223,7 +223,7 @@ lines = {
 "next_id": "25",
 "next_id_after": "25",
 "replacements": [  ],
-"responses": PoolStringArray( "24" ),
+"responses": PackedStringArray( "24" ),
 "text": "This one",
 "translation_key": "This one",
 "type": "response"
@@ -248,7 +248,7 @@ lines = {
 "next_id": "35",
 "next_id_after": "end!",
 "replacements": [  ],
-"responses": PoolStringArray( "26", "27", "30", "31" ),
+"responses": PackedStringArray( "26", "27", "30", "31" ),
 "text": "Another one",
 "translation_key": "Another one",
 "type": "response"
@@ -295,7 +295,7 @@ lines = {
 "next_id": "end",
 "next_id_after": "41",
 "replacements": [  ],
-"responses": PoolStringArray( "36" ),
+"responses": PackedStringArray( "36" ),
 "text": "End the conversation",
 "translation_key": "End the conversation",
 "type": "response"

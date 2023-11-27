@@ -1,18 +1,18 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Library/Assets/Objects/spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Library/Assets/Objects/spritesheet.png" type="Texture2D" id=1]
 
 [sub_resource type="Animation" id=1]
 resource_name = "main"
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:frames")
+tracks/0/path = NodePath("AnimatedSprite2D:frames")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PackedFloat32Array(  ),
+"transitions": PackedFloat32Array(  ),
 "update": 1,
 "values": [  ]
 }
@@ -130,7 +130,7 @@ animations = [ {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/main = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource( 22 )
 frame = 6
 playing = true

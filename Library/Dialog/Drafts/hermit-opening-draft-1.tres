@@ -126,7 +126,7 @@ lines = {
 "next_id": "22",
 "next_id_after": "end!",
 "replacements": [  ],
-"responses": PoolStringArray( "21", "24" ),
+"responses": PackedStringArray( "21", "24" ),
 "text": "yes.",
 "translation_key": "yes.",
 "type": "response"
@@ -179,7 +179,7 @@ lines = {
 "next_id_after": "end!",
 "parent_id": "24",
 "replacements": [  ],
-"responses": PoolStringArray( "27", "30", "33" ),
+"responses": PackedStringArray( "27", "30", "33" ),
 "text": "From a linear perspective, yes.",
 "translation_key": "From a linear perspective, yes.",
 "type": "response"
@@ -264,7 +264,7 @@ lines = {
 "next_id": "end!",
 "next_id_after": "end!",
 "replacements": [  ],
-"responses": PoolStringArray( "4", "5", "7", "9", "11" ),
+"responses": PackedStringArray( "4", "5", "7", "9", "11" ),
 "text": "What?",
 "translation_key": "What?",
 "type": "response"
@@ -291,7 +291,7 @@ lines = {
 "next_id": "43",
 "next_id_after": "48",
 "replacements": [  ],
-"responses": PoolStringArray( "42", "44", "46", "47" ),
+"responses": PackedStringArray( "42", "44", "46", "47" ),
 "text": "First one",
 "translation_key": "First one",
 "type": "response"
