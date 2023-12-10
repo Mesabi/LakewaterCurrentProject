@@ -1,17 +1,17 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701045957
-default_env.tres::Environment::6555891044939043873::1701045957::0::1::::<><>::
+::res://::1701046626
+default_env.tres::Environment::6555891044939043873::1701046626::0::1::::<><>::
 dialogue.cfg::TextFile::-1::1700927138::0::1::::<><>::
 icon.png::CompressedTexture2D::8281236178456674104::1700927138::1700927240::1::::<><>::
 Main.gd::GDScript::-1::1700927184::0::1::::<>Node2D<>::
-Main.tscn::PackedScene::1748431526973346120::1701045956::0::1::::<><>::uid://bqodbwe8g13sm::::res://Library/Scenes/Globals/WorldManager.tscn
+Main.tscn::PackedScene::1748431526973346120::1701046624::0::1::::<><>::uid://bqodbwe8g13sm::::res://Library/Scenes/Globals/WorldManager.tscn
 README.md::TextFile::-1::1700927138::0::1::::<><>::
 TODO.gd::GDScript::-1::1700927184::0::1::::<>RefCounted<>::
 ::res://addons/::1700927998
-::res://addons/dialogue_manager/::1701045956
+::res://addons/dialogue_manager/::1701046624
 constants.gd::GDScript::-1::1700927999::0::1::::<>Node<>::
 dialogue_label.gd::GDScript::-1::1700927999::0::1::::DialogueLabel<>RichTextLabel<>res://addons/dialogue_manager/assets/icon.svg::
-dialogue_label.tscn::PackedScene::5518490004210093266::1701045956::0::1::::<><>::res://addons/dialogue_manager/dialogue_label.gd
+dialogue_label.tscn::PackedScene::5518490004210093266::1701046624::0::1::::<><>::res://addons/dialogue_manager/dialogue_label.gd
 dialogue_line.gd::GDScript::-1::1700927999::0::1::::DialogueLine<>RefCounted<>::
 dialogue_manager.gd::GDScript::-1::1700929851::0::1::::<>Node<>::
 dialogue_reponses_menu.gd::GDScript::-1::1700927999::0::1::::DialogueResponsesMenu<>VBoxContainer<>res://addons/dialogue_manager/assets/responses_menu.svg::
@@ -189,17 +189,18 @@ Triangle.png::CompressedTexture2D::2477468700664217821::1700927138::1700927241::
 Character.gd::GDScript::-1::1700927185::0::1::::<>CharacterBody2D<>::
 Character.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Assets/Graphics/Solid/SmallSq.png<>res://Library/Scenes_2/Character/Character.gd
 ::res://Library/Dialog/::1700927138
-::res://Library/Dialog/Drafts/::1700927138
+::res://Library/Dialog/Drafts/::1701133480
 Demo.tres::Resource::-1::1700927185::0::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
 hermit-opening-draft-1.tres::Resource::-1::1700927185::0::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
 opening-draft1.tres::Resource::-1::1700927185::0::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
 template.tres::Resource::-1::1700927185::0::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
 test Convo Fatalism.tres::Resource::-1::1700927185::0::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
 test-2.tres::Resource::-1::1700927185::0::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
-::res://Library/Levels/::1701045957
+test-gd4.dialogue::Resource::8180884388123696807::1701133480::1701133481::1::::<><>::res://addons/dialogue_manager/dialogue_resource.gd
+::res://Library/Levels/::1701046625
 Error.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://icon.png
-Level_Template.tscn::PackedScene::6723986523670111349::1701045957::0::1::::<><>::uid://gwct4mqbdtlx::::res://Library/Scenes/Managers/Level_Manager.tscn
-GD4Test-01.tscn::PackedScene::7070057194312911976::1701045996::0::1::::<><>::uid://gwct4mqbdtlx::::res://Library/Scenes/Managers/Level_Manager.tscn
+GD4Test-01.tscn::PackedScene::7070057194312911976::1701046625::0::1::::<><>::uid://gwct4mqbdtlx::::res://Library/Scenes/Managers/Level_Manager.tscn<>uid://d102ehobf1eqd::::res://Library/Scenes/Environment/Collision_Box.tscn<>uid://dybbjma21vq5n::::res://Library/Scenes/Environment/floor.tscn
+Level_Template.tscn::PackedScene::6723986523670111349::1701046625::0::1::::<><>::uid://gwct4mqbdtlx::::res://Library/Scenes/Managers/Level_Manager.tscn
 scale_test.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Assets/Graphics/Solid/1ksq.png<>res://autumn.tscn<>res://Library/Scenes_2/Character/Character.tscn
 test-movement.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Environment/Platform.tscn<>res://Library/Scenes/Environment/NPC.tscn
 Test_Level.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Environment/Wall.tscn<>res://Library/Scenes/Enemy/Bat.tscn<>res://Library/Scenes/Environment/Wreckage.tscn<>res://Library/Scenes/Environment/Wind.tscn<>res://Library/Scenes/Environment/Hallway.tscn<>res://Library/Scenes/Environment/Sliding Door.tscn<>res://Library/Scenes/Environment/Level_Change.tscn<>res://Library/Scenes/Environment/Interact.tscn<>res://Library/Scenes/Environment/Test_Interact.tscn<>res://Library/Scenes/Environment/Background_Pipes.tscn
@@ -227,13 +228,14 @@ Lunge Token.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scene
 MultiTimer.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 MultiTimer.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Enemy/MultiTimer.gd
 Void.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Enemy/CrazyMoverTest.tscn
-::res://Library/Scenes/Environment/::1700927138
+::res://Library/Scenes/Environment/::1701046626
 Background_Pipes.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Assets/Objects/Pipes.jpg
 Breakable_Box.gd::GDScript::-1::1700927185::0::1::::<>StaticBody2D<>::
 Breakable_Box.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Enemy/Health_System.tscn<>res://Library/Assets/Graphics/Solid/SmallSq.png<>res://Library/Scenes/Environment/Breakable_Box.gd
-Collision_Box.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Assets/Graphics/Solid/Square_Solid.png
+Collision_Box.tscn::PackedScene::9037428320843810675::1701046625::0::1::::<><>::uid://nrmse3l0qirn::::res://Library/Assets/Stock_Objects/Solid/Square_Solid.png
 Door.gd::GDScript::-1::1700927185::0::1::::<>StaticBody2D<>::
 Door.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Assets/Graphics/Solid/SmallSq.png<>res://Library/Scenes/Environment/Door.gd
+floor.tscn::PackedScene::8845936096826598513::1701046626::0::1::::<><>::uid://csx3ey8082js8::::res://Library/Assets/Stock_Objects/Solid/1ksq.png
 Hallway.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Environment/Wall.tscn
 Interact.gd::GDScript::-1::1700927185::0::1::::<>Area2D<>::
 Interact.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Assets/Graphics/Solid/Circle_Solid.png<>res://Library/Scenes/Environment/Interact.gd
@@ -263,7 +265,7 @@ A.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Environm
 B.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 B.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Environment/Test_Stuff/B.gd
 TestRealm.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Environment/Test_Stuff/A.tscn<>res://Library/Scenes/Environment/Test_Stuff/B.tscn
-::res://Library/Scenes/Globals/::1701045956
+::res://Library/Scenes/Globals/::1701046624
 Dialog_Hook.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 Dialog_Hook.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Dialog_Hook.gd
 Global.gd::GDScript::-1::1701043802::0::1::::<>Node2D<>::
@@ -275,13 +277,13 @@ Operations.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes
 SaveManager.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 SaveManager.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/SaveManager.gd
 States.gd::GDScript::-1::1700927185::0::1::::<>Node<>::
-WorldManager.gd::GDScript::-1::1701045590::0::1::::<>Node2D<>::
-WorldManager.tscn::PackedScene::3538528570432023088::1701045956::0::1::::<><>::res://Library/Scenes/Globals/WorldManager.gd<>uid://dwavi2vv13g2u::::res://Library/Scenes/UI/HUD.tscn<>res://Library/Scenes/UI/Pause Menu.tscn
-::res://Library/Scenes/Managers/::1701045957
+WorldManager.gd::GDScript::-1::1701046131::0::1::::<>Node2D<>::
+WorldManager.tscn::PackedScene::3538528570432023088::1701046624::0::1::::<><>::res://Library/Scenes/Globals/WorldManager.gd<>uid://dwavi2vv13g2u::::res://Library/Scenes/UI/HUD.tscn<>uid://hkrqsdcyi550::::res://Library/Scenes/Player/Player/Player.tscn<>res://Library/Scenes/UI/Pause Menu.tscn
+::res://Library/Scenes/Managers/::1701046625
 Enemy_Manager.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
-Enemy_Manager.tscn::PackedScene::3933196274693680729::1701045957::0::1::::<><>::res://Library/Scenes/Managers/Enemy_Manager.gd
+Enemy_Manager.tscn::PackedScene::3933196274693680729::1701046625::0::1::::<><>::res://Library/Scenes/Managers/Enemy_Manager.gd
 Level_Manager.gd::GDScript::-1::1701043493::0::1::::<>Node2D<>::
-Level_Manager.tscn::PackedScene::466706278930485889::1701045957::0::1::::<><>::res://Library/Scenes/Managers/Level_Manager.gd<>uid://bwbjfyg7qvms4::::res://Library/Scenes/Managers/Enemy_Manager.tscn
+Level_Manager.tscn::PackedScene::466706278930485889::1701046624::0::1::::<><>::res://Library/Scenes/Managers/Level_Manager.gd<>uid://bwbjfyg7qvms4::::res://Library/Scenes/Managers/Enemy_Manager.tscn
 ::res://Library/Scenes/Objects/::1700927138
 Timer.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 Timer.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Timer.gd
@@ -293,11 +295,11 @@ Inventory.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 Inventory.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Player/Inventory/Inventory.gd
 Resources.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 Resources.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Player/Inventory/Resources.gd
-::res://Library/Scenes/Player/Player/::1701045957
+::res://Library/Scenes/Player/Player/::1701046624
 Bullet.gd::GDScript::-1::1700927185::0::1::::<>RigidBody2D<>::
 Can_Grab.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
-Player.gd::GDScript::-1::1701045917::0::1::::<>CharacterBody2D<>::
-Player.tscn::PackedScene::513027394764341581::1701045957::0::1::::<><>::uid://vvnfo5u4ovt7::::res://Library/Assets/Stock_Objects/Raw/New folder/U+2192.svg.png<>res://Library/Scenes/Player/Player/Player.gd<>uid://dl8bycwjlbuv2::::res://Library/Assets/Stock_Objects/Solid/SmallSq.png<>uid://b7crc5vy1j13s::::res://Library/Assets/Stock_Objects/Tutorial/bombs_icon.png
+Player.gd::GDScript::-1::1701046389::0::1::::<>CharacterBody2D<>::
+Player.tscn::PackedScene::513027394764341581::1701046624::0::1::::<><>::uid://vvnfo5u4ovt7::::res://Library/Assets/Stock_Objects/Raw/New folder/U+2192.svg.png<>res://Library/Scenes/Player/Player/Player.gd<>uid://dl8bycwjlbuv2::::res://Library/Assets/Stock_Objects/Solid/SmallSq.png<>uid://b7crc5vy1j13s::::res://Library/Assets/Stock_Objects/Tutorial/bombs_icon.png
 Player_Health.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 Player_Health.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Player/Player/Player_Health.gd
 test_ui.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://test_ui.gd<>res://Library/Assets/Graphics/White_Edited/Square.png
@@ -325,9 +327,9 @@ Gatling_Gun.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scene
 ::res://Library/Scenes/Player/Weapon/Sword/::1700927138
 StillAttack.gd::GDScript::-1::1700927185::0::1::::<>Node2D<>::
 StillAttack.tscn::PackedScene::-1::1700927185::0::1::::<><>::res://Library/Scenes/Player/Weapon/Sword/StillAttack.gd<>res://Library/Assets/Graphics/White_Edited/Arrow.png
-::res://Library/Scenes/UI/::1701045957
+::res://Library/Scenes/UI/::1701046624
 HUD.gd::GDScript::-1::1701045952::0::1::::<>Control<>::
-HUD.tscn::PackedScene::8704707405876694178::1701045957::0::1::::<><>::res://Library/Scenes/UI/HUD.gd
+HUD.tscn::PackedScene::8704707405876694178::1701046624::0::1::::<><>::res://Library/Scenes/UI/HUD.gd
 Login_Gui.tscn::PackedScene::-1::1700927184::0::1::::<><>::res://Library/Assets/Graphics/Themes/kenneyUI-green.tres
 Main Menu.tscn::PackedScene::-1::1700927185::0::1::::<><>::
 Pause Menu.gd::GDScript::-1::1700927185::0::1::::<>Control<>::

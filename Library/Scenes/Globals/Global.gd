@@ -115,7 +115,7 @@ func doConversation(interact, line):
 	if(!inInteraction):
 		if(!interact == null):
 			var dlog = load(interact)
-			DialogueManager.show_example_dialogue_balloon(line, dlog)
+			DialogueManager.show_dialogue_balloon(dlog, line)
 			inInteraction = true
 	
 

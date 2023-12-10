@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dos48abwebf7l"
+path="res://.godot/imported/test-gd4.dialogue-2f75fba8e12949845656935d0fde010b.tres"
+
+[deps]
+
+source_file="res://Library/Dialog/Drafts/test-gd4.dialogue"
+dest_files=["res://.godot/imported/test-gd4.dialogue-2f75fba8e12949845656935d0fde010b.tres"]
+
+[params]
+
+defaults=true

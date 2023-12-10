@@ -28,7 +28,6 @@ func _ready():
 	Global.loadLevel(self, "res://Library/Levels/GD4Test-01.tscn")#res://Library/Levels/test-movement.tscn
 	Global.setGlobalObjective()
 	print(get_parent().get_child(0))#.readFile()
-	print("test")
 	pass # Replace with function body.
 
 
@@ -50,6 +49,7 @@ func getHUD():
 
 func test():
 	print("this was a test")
+	Global.doConversation("res://Library/Dialog/Drafts/test-gd4.dialogue", "this_is_a_node_title")
 	
 func testThis(that):
 	print("----")
