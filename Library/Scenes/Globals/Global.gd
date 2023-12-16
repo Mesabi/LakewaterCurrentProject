@@ -34,6 +34,13 @@ func setGlobalObjective():
 	getWorldManager().getHUD().updateObjective(currentObjective)
 	pass
 
+func doContextAction(action):
+	print(action)
+	match action:
+		"Interact":
+			print("")
+		
+
 
 func loadLevel(worldManager: Node2D, scenePath: String) -> void:
 	#90% sure this is the only one of these that works	

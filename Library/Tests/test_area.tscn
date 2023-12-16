@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnwfn1isok0x5"]
+
+[ext_resource type="Script" path="res://Library/Tests/test_area.gd" id="1_u603b"]
+[ext_resource type="Texture2D" uid="uid://dp8q0q7ipd625" path="res://icon.png" id="2_7ejlu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wi4o3"]
+
+[node name="TestArea" type="Area2D"]
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("1_u603b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wi4o3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7ejlu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -49,8 +49,8 @@ func getHUD():
 
 func test():
 	print("this was a test")
-	Global.doConversation("res://Library/Dialog/Drafts/test-gd4.dialogue", "this_is_a_node_title")
-	
+	#Global.doConversation("res://Library/Dialog/Drafts/test-gd4.dialogue", "this_is_a_node_title")
+	player.test()
 func testThis(that):
 	print("----")
 	print(that)

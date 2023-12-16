@@ -12,10 +12,43 @@
 
 [node name="Floor" type="Node2D" parent="Environment"]
 
-[node name="Collision_Box" parent="Environment/Floor" instance=ExtResource("2_1rr7l")]
-position = Vector2(1, 182)
-
 [node name="floor" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
 position = Vector2(48, 359)
+
+[node name="floor2" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(637, 361)
+
+[node name="floor3" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(1288, -54)
+
+[node name="floor4" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(1877, -52)
+
+[node name="floor5" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(-2434, 764)
+
+[node name="floor6" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(-1845, 766)
+
+[node name="floor7" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(-1194, 351)
+
+[node name="floor8" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(-605, 353)
+
+[node name="floor9" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(-2335, -697)
+
+[node name="floor10" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(-1746, -695)
+
+[node name="floor11" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(-115, -1444)
+
+[node name="floor12" parent="Environment/Floor" instance=ExtResource("3_xdukd")]
+position = Vector2(474, -1442)
+
+[node name="Collision_Box" parent="Environment" instance=ExtResource("2_1rr7l")]
+position = Vector2(-212, 259)
 
 [editable path="Level_Manager"]

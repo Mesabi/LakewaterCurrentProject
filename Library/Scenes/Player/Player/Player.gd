@@ -6,17 +6,28 @@ extends CharacterBody2D
 
 ###INPUTS###
 var oldMotion = Vector2()
+var isLeft = false
 var activeR = false
 var activeL = false
-var activeJ = false
-var activeD = false#down
-var activeI = false#interact
-var activeA = false#attack
-	
+var activeU = false
+var activeD = false
+var activeInteract = false
+var activeAttack = false
 var activeDash = false
+var activeSpell = false
+var activeBlock = false
+var activeParry = false
+var activeSwap = false
+var activeOther = false
+var activeReset = false
+
+	
 	#
 var isJump = false
 var isDash = false
+var isAttacking = false
+var doneAttacking = true
+var attackCooldown : float = 0
 
 var speed = 750
 #var velocity : Vector2
@@ -26,7 +37,8 @@ var motion = Vector2.ZERO#probably should rename this to velocity for consistenc
 @export var jumpforce = 400 # The jump force of the character
 @export var jumpLength = .5
 var jumpTime = 0
-
+@onready var _animation_player = $AnimationPlayer
+@onready var _sprite = $Sprite2D
 
 var canDash = true
 var dashCooldown = 2.0  # Adjust the cooldown time as needed (in seconds)
@@ -74,121 +86,109 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	label1.text = "x : "+str(motion.x) + "y : " + str(motion.y)
-	label2.text = str(dashTime)
+	label1.text = str(activeAttack)#"x : "+str(motion.x) + "y : " + str(motion.y)
+	label2.text = str(attackCooldown)
 	label3.text = str(state)
 
 	#velocity = Vector2.ZERO
 	cam.position = self.position
 	getInput(delta)
-	move(delta)
+	if(isAttacking):
+		handleAttack(delta)
+	else:
+		move(delta)
 	pass
 
+
 func getInput(delta):
-	#at some point this needs to be set up for non-play scenarios. i.e. menus
-#	oldMotion = motion
-	activeR = false
-	activeL = false
-	activeJ = false
-	activeD = false#down
-	activeI = false#interact
+	#some of these may need to be reset for actions that should be 'just' pressed. 
 	
-	activeDash = false
-	#
-	isJump = false
-	isDash = false
+	activeR = Input.is_action_pressed("ui_right")
+	activeL = Input.is_action_pressed("ui_left")
+	activeU = Input.is_action_pressed("ui_up")
+	activeD = Input.is_action_pressed("ui_down")
+	activeDash = Input.is_action_pressed("SHIFT")
+	activeSpell = Input.is_action_pressed("A")
+	activeBlock = Input.is_action_pressed("X")
+	activeParry = Input.is_action_pressed("C")
+	activeSwap = Input.is_action_pressed("S")
+	activeOther = Input.is_action_pressed("D")
+	activeReset = Input.is_action_pressed("R")
 	
-###Input Map
-	if false:
-		#Input.is_action_just_pressed("TEST"):
-		thisAttack = stillAttack.instantiate()
-		thisAttack.global_position = attackPosL.global_position#change to attackpos later
-		thisAttack.test()
-	#current issue is it's doing that thing where GP.self =/= GP.spawn
-	#might not be an issue as the attacks will fade quickly.
-	#also, wasn't this an order thing? might need to put pos in a different order of operations.
-		get_parent().add_child(thisAttack)
-		
-	#old code for refrence...
-#	var thisBullet = bullet.instance()
-#	thisBullet.position = firepoint
-#	thisBullet.rotation_degrees = self.rotation_degrees
-#	thisBullet.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
-#	#consider changing this when UI is added to get_root
-#	get_parent().add_child(thisBullet)
-	if Input.is_action_pressed("reset"): # If the player enters the right arrow
-		#Global.loadLevel(Global.getWorldManager(), "res://Library/Levels/Test_Managers_Level.tscn")
-		print("reset")
-	if Input.is_action_pressed("ui_right"): # If the player enters the right arrow
-		activeR = true
-	if Input.is_action_pressed("ui_left"): # If the player enters the left arrow
-		activeL = true
-	if Input.is_action_pressed("ui_down"): # If the player enters the left arrow
-		activeD = true
-	if Input.is_action_pressed("attack"): # If the player enters the left arrow
-		activeA = true
-	if Input.is_action_pressed("interact"):
-		activeI = true
-		#interact will need to pull from global.
-		#additionally, need a "flick interact" and a "stop interact" state
-		doInteract()
-		
-	if Input.is_action_just_pressed("ui_up"): # And the player hits the up arrow key
-		##consider making this work with ActiveJ variable.
-		if(currentJumps < multiJumps):
-			jumpTime = jumpLength
-			currentJumps += 1
-			isJump = true
+	activeInteract = Input.is_action_pressed("E")
+	if(Input.is_action_pressed("Z")):
+		if(!activeAttack):
+			activeAttack = true
+			attackCooldown = 1# move this line ASAP
+
+	
+	isJump = activeU#will need update later
+	
 	if is_on_floor(): # If the ground checker is colliding with the ground
 		currentJumps = 0#reset jumps
 		if(!canDash):#reset dashes
 			pass
-	if Input.is_action_pressed("dash"):
-		if(canDash):
-			isDash = true
-			dashTime = dashLength
 			
 	
-		
-		
-		
-	if(!activeR && !activeL): # If none of these are pressed
-		motion.x = 0# lerp(motion.x, 0, 0.1) # set the x to 0 by smoothly transitioning by 0.25
 
+
+
+func flip():
+	if(activeL && activeR):
+		return
+	else:
+		if(activeL):
+			_sprite.flip_h = true
+			isLeft = true
+		if(activeR):
+			isLeft = false
+			_sprite.flip_h = false
 
 	#resetDash(delta)
 func move(delta):
+	flip()
 	####Movement State machine. works ok, needs more "crunch"
 	#consider run speed slowly picking up?
 	#idle / runL / runR / jumpL / jumpR / duck / attackstates
 	match state:
 		"idle":
 			#drift to stop.
-			if(abs(motion.x) > 10):
+			if(abs(motion.x) > 10):#needs update
 				motion *= .8
 			else:
 				motion.x = 0
 			stateIdle()
+			_animation_player.play("Idle")
 		"interact":
-			stateInteract(activeI)
+			stateInteract(activeInteract)
 		"runL":
 			motion.x = -speed # then the x coordinates of the vector be negative
 			stateRunL()
+
+			_animation_player.play("walk")
 		"runR":
 			motion.x = speed # then the x coordinates of the vector be positive
 			stateRunR()
+
+			_animation_player.play("walk")
 		"slideL":
+			_animation_player.play("slide")
 			motion.x = -speed * 1.5
 			stateSlideL()
 		"slideR":
+			_animation_player.play("slide")
 			motion.x = speed * 1.5
 			stateSlideR()
 		"jumpL":
+		#fix jump anim for multijump
+		#also sync this up when you get a chance and redo these sprites
+			_animation_player.play("jump")
 			jumpTime -= delta
 			motion.x = -speed
 			motion.y = -jumpforce
 			stateJumpL()
 		"jumpR":
+			_animation_player.play("jump")
 			jumpTime -= delta
 			motion.x = speed
 			motion.y = -jumpforce
@@ -206,6 +206,7 @@ func move(delta):
 		"jumpN":
 			#consider modifying this to have more interactions with dash mechanics.
 			#as is, this creates a a hard stop.
+			_animation_player.play("jump")
 			jumpTime -= delta
 			motion.y = -jumpforce
 			motion.x = 0#lerp(motion.x, 0, 0.001)
@@ -226,21 +227,26 @@ func move(delta):
 		"stopRunR":
 			motion.x = 0#lerp(motion.x, 0, 0.1)
 			stateStopRunR()
+		_:
+			pass
 			
 			
 			
 			
 	motion.y += gravity + delta # Always make the player fall down
 	set_velocity(motion)
-	set_up_direction(Vector2.UP)
+	set_up_direction(Vector2.UP)#look into what this does...
 	move_and_slide()
 	motion = velocity#move and slide is better for platformers. add hit boxes elsewhere.
-	handleAttack()
+	handleAttack(delta)
 	# Move and slide is a function which allows the kinematic body to detect
 	# collisions and move accordingly
 
 func stateIdle():
+	#technically this shouldn't need to update the flip of the sprite.
+
 	if(isJump):
+			_animation_player.play("jump")
 			state = "jumpN"
 	if(activeR && !activeL):#idle -> runR
 		state = "runR"
@@ -250,7 +256,7 @@ func stateIdle():
 		state = "runL"
 		if(isDash):
 			state = "dashL"
-			
+	
 			
 func stateInteract(activeI):
 	#if can interact do: state == interact.
@@ -332,12 +338,18 @@ func stateDashL():
 
 
 
-func stateAttackR():
+func stateAttackStillR():
+	if(doneAttacking):
+		state = "idle"
+	else:
+		attackCooldown = 10
 	pass
 
 
 
-func stateAttackL():
+func stateAttackStillL():
+	if(doneAttacking):
+		state = "idle"
 	pass
 
 
@@ -502,14 +514,32 @@ func stateStopRunL():
 		else:
 			state = "idle"
 
-func handleAttack():
-	#attackStill(L/R) / attackMove(L/R) / attackUp(L/R) /attackDash(L/R) attackDown(L/R)
-	if(!activeA):
+func handleAttack(delta):
+	#attackStill(L/R) / attackMove(L/R) / attackUp(L/R) /attackDash(L/R) attackDown(L/R)	
+	if(attackCooldown >= 0):
+		if(activeAttack):
+			attackCooldown -= delta
+		if(attackCooldown < 0):
+			activeAttack = false
+	
+	if(!activeAttack):
+		
+		
 		return
+		
+		
 	else:
 		match(state):
 			"idle":
-				state = "attackStllN"#fix direction later
+				#state = "attackStllN"#fix direction later
+				if(isLeft):
+					state = "attackStillL"
+					stateAttackStillL()
+					
+				else:
+					state = "attackStillR"
+					stateAttackStillR()
+				_animation_player.play("attackBasic")
 			"interact":
 				return
 			"runL":
@@ -598,6 +628,8 @@ func get_Input(delta):
 		
 func test():
 	print(self)
+	state = "undefined"
+	_animation_player.play("attackBasic")
 		
 func setInteract(r, a):
 	interactResource = r

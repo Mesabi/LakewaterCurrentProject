@@ -15,6 +15,7 @@ func _ready():
 
 func _on_Interact_body_entered(body):
 	#gives the player the ability to interact.
+	print(body)
 	if(body.is_in_group("Player")):
 		#calls the hook and the path properties from the dialogHook
 		body.setInteract(getPath(), getHook())
@@ -35,6 +36,7 @@ func getPath():
 func _on_Interact_body_exited(body):
 	#removes this from the player
 	if(body.is_in_group("Player")):
+		print(body)
 		body.setInteract(null, null)
 		Global.inInteraction = false#resets this after the player moves away.
 	pass # Replace with function body.

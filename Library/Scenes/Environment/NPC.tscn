@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource path="res://Library/Assets/Graphics/Solid/Hexagon_Solid.png" type="Texture2D" id=1]
-[ext_resource path="res://Library/Scenes/NPC.gd" type="Script" id=2]
-[ext_resource path="res://Library/Scenes_2/Objects/Dialog_Hook.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Library/Scenes_2/Objects/Interact.tscn" type="PackedScene" id=4]
+[ext_resource type="Texture2D" uid="uid://beyr2rih48ef0" path="res://Library/Assets/Stock_Objects/Solid/Hexagon_Solid.png" id="1"]
+[ext_resource type="Script" path="res://Library/Scenes/Environment/NPC.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Library/Scenes_2/Objects/Dialog_Hook.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Library/Scenes_2/Objects/Interact.tscn" id="4"]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.3113
