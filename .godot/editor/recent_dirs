@@ -1,5 +1,7 @@
-res://Library/Scenes/Globals
+res://Library/Levels
 res://Library/Tests
+res://Library/Scenes/Player/Weapon/Sword
+res://Library/Scenes/Globals
 res://Library/Assets/Stock_Objects/Solid
 res://Library/Scenes/Environment
 res://Library/Scenes/Managers

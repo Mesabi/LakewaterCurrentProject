@@ -6,13 +6,15 @@ extends Node2D
 var current_scene = null#figure out what this does.
 
 
-
+var IsolationTest = false #use this to run single scene instances. 
 
 var inInteraction : bool = false#keeps the player from triggering multiple interactions at once. 
 #note! I modified dialogue manager to change this when player is in dialog. NOTE GD4 Update broke this.
+#I think DM might have added this natively in the 4.0 version? 
+
 
 #for global variables that affect story or levels, use States.gd
-
+var gravity = 32
 var currentObjective = "Undefined"
 
 

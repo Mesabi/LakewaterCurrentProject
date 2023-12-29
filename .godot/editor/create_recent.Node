@@ -1,7 +1,9 @@
-Sprite2D
-AnimationPlayer
-AnimationTree
 CollisionShape2D
 Area2D
+Label
+CharacterBody2D
+AnimationPlayer
+Sprite2D
+AnimationTree
 StaticBody2D
 Node2D

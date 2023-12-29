@@ -1,0 +1,128 @@
+[gd_scene load_steps=9 format=3 uid="uid://btvf2anecllcb"]
+
+[ext_resource type="Script" path="res://Library/Tests/test_enemy.gd" id="1_21u0e"]
+[ext_resource type="PackedScene" uid="uid://w13u2v63qvpo" path="res://Library/Scenes/Enemy/Enemy.tscn" id="1_y8dtt"]
+[ext_resource type="Texture2D" uid="uid://b32meqmwckxos" path="res://Library/Assets/TestSprites/EnemyKnightTest/spritesheet(2).png" id="3_hicoe"]
+
+[sub_resource type="Animation" id="Animation_6ik34"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [97]
+}
+
+[sub_resource type="Animation" id="Animation_lsxn2"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [97, 98, 99, 100, 101, 102, 103, 104, 105]
+}
+
+[sub_resource type="Animation" id="Animation_axia4"]
+resource_name = "Move"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [120, 121, 122, 123, 124, 125, 126, 127, 128]
+}
+
+[sub_resource type="Animation" id="Animation_wo76u"]
+resource_name = "TakeDamage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [34]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_22hd4"]
+_data = {
+"Idle": SubResource("Animation_lsxn2"),
+"Move": SubResource("Animation_axia4"),
+"RESET": SubResource("Animation_6ik34"),
+"TakeDamage": SubResource("Animation_wo76u")
+}
+
+[node name="Test Enemy" type="Node2D"]
+script = ExtResource("1_21u0e")
+
+[node name="Enemy" parent="." instance=ExtResource("1_y8dtt")]
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" parent="Enemy" index="2"]
+position = Vector2(5.75, -29.25)
+texture = ExtResource("3_hicoe")
+hframes = 12
+vframes = 14
+frame = 97
+
+[node name="AnimationPlayer" parent="Enemy" index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_22hd4")
+}
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -137.0
+offset_right = 58.0
+offset_bottom = -110.0
+text = "undefined"
+
+[editable path="Enemy"]

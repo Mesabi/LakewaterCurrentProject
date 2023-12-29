@@ -1,7 +1,7 @@
 extends Node2D
 
 var save
-@onready var resources = $Resources
+#@onready var resources = $Resources
 var state
 @onready var player = $Player
 @onready var HUD = $CanvasLayer/HUD
@@ -33,8 +33,8 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("TEST"):
-		test()
+	#if Input.is_action_just_pressed("TEST"):
+		#test()
 	pass
 	#getInput()
 

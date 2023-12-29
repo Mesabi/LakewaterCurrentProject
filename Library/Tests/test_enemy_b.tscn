@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnv754x1dhg2y"]
+
+[ext_resource type="PackedScene" uid="uid://w13u2v63qvpo" path="res://Library/Scenes/Enemy/Enemy.tscn" id="1_t15aq"]
+
+[node name="Test_Enemy_B" type="Node2D" groups=["TEST"]]
+
+[node name="Enemy" parent="." instance=ExtResource("1_t15aq")]
+
+[editable path="Enemy"]

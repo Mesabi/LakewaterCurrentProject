@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5ixq86h2pvyr"]
+
+[ext_resource type="Script" path="res://Library/Tests/test_marker.gd" id="1_4wj7x"]
+[ext_resource type="Texture2D" uid="uid://nrmse3l0qirn" path="res://Library/Assets/Stock_Objects/Solid/Square_Solid.png" id="1_fpn13"]
+
+[node name="Test Marker" type="Node2D"]
+script = ExtResource("1_4wj7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+rotation = 0.785398
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_fpn13")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -39.0
+offset_top = -10.0
+offset_right = 42.0
+offset_bottom = 13.0
+text = "Test!"

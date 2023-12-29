@@ -27,7 +27,10 @@ var isJump = false
 var isDash = false
 var isAttacking = false
 var doneAttacking = true
-var attackCooldown : float = 0
+var attackCooldown : float = 0.5
+var attackLength = .5
+var attackTime = 0.0
+@onready var attackManager = $Attack
 
 var speed = 750
 #var velocity : Vector2
@@ -45,9 +48,6 @@ var dashCooldown = 2.0  # Adjust the cooldown time as needed (in seconds)
 var dashForce = 1000
 var dashLength = .5
 var dashTime = 0.0
-
-var attackLength = .5
-var attackTime = 0.0
 
 
 var multiJumps = 3
@@ -70,13 +70,14 @@ var thisAttack = null
 @onready var label1 = $CanvasLayer/Camera2D/Label1
 @onready var label2 = $CanvasLayer/Camera2D/Label2
 @onready var label3 = $CanvasLayer/Camera2D/Label3
-@onready var facing = $sprite/facing
+#@onready var facing = $sprite/facing #handled by isLeft
 
 var interactResource = null
 var interactAction = null
 #onready var anim = $Autumn/AnimationPlayer
 #onready var currenAnim = anim.get("parameters/playback")
 var state = "idle"
+var behavior = "passive" # passive / change / attack / other 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -86,18 +87,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	label1.text = str(activeAttack)#"x : "+str(motion.x) + "y : " + str(motion.y)
-	label2.text = str(attackCooldown)
+	label1.text = str("x : ")+str(motion.x) + "y : " + str(motion.y)
+	label2.text = str(attackLength)
 	label3.text = str(state)
+	isState()
 
 	#velocity = Vector2.ZERO
 	cam.position = self.position
 	getInput(delta)
-	if(isAttacking):
-		handleAttack(delta)
-	else:
-		move(delta)
-	pass
+	stateMachineManager(delta)
+
+
 
 
 func getInput(delta):
@@ -116,10 +116,13 @@ func getInput(delta):
 	activeReset = Input.is_action_pressed("R")
 	
 	activeInteract = Input.is_action_pressed("E")
-	if(Input.is_action_pressed("Z")):
+	if(Input.is_action_just_pressed("Z")):#attack
 		if(!activeAttack):
 			activeAttack = true
-			attackCooldown = 1# move this line ASAP
+			behavior = "change"
+			attackLength = 0
+			attackManager.attack(isLeft)
+			#attackCooldown = 1# move this line ASAP
 
 	
 	isJump = activeU#will need update later
@@ -145,11 +148,12 @@ func flip():
 			_sprite.flip_h = false
 
 	#resetDash(delta)
-func move(delta):
-	flip()
+func stateMachineMove(delta):
 	####Movement State machine. works ok, needs more "crunch"
 	#consider run speed slowly picking up?
-	#idle / runL / runR / jumpL / jumpR / duck / attackstates
+	#idle / runL / runR / jumpL / jumpR / duck / etc.
+	#change states is in different function
+	#attack states is in different function
 	match state:
 		"idle":
 			#drift to stop.
@@ -194,12 +198,15 @@ func move(delta):
 			motion.y = -jumpforce
 			stateJumpR()
 		"fallL":
+			_animation_player.play("Fall")
 			motion.x = -speed
 			stateFallL()
 		"fallR":
+			_animation_player.play("Fall")
 			motion.x = speed
 			stateFallR()
 		"fallN":
+			_animation_player.play("Fall")
 			motion.x = 0#lerp(motion.x, 0, 0.01)
 			#no modification to vectors
 			stateFallN()
@@ -231,20 +238,10 @@ func move(delta):
 			pass
 			
 			
-			
-			
-	motion.y += gravity + delta # Always make the player fall down
-	set_velocity(motion)
-	set_up_direction(Vector2.UP)#look into what this does...
-	move_and_slide()
-	motion = velocity#move and slide is better for platformers. add hit boxes elsewhere.
-	handleAttack(delta)
-	# Move and slide is a function which allows the kinematic body to detect
-	# collisions and move accordingly
+
 
 func stateIdle():
-	#technically this shouldn't need to update the flip of the sprite.
-
+	#this shouldn't need to update the flip of the sprite.
 	if(isJump):
 			_animation_player.play("jump")
 			state = "jumpN"
@@ -339,21 +336,21 @@ func stateDashL():
 
 
 func stateAttackStillR():
-	if(doneAttacking):
-		state = "idle"
-	else:
-		attackCooldown = 10
-	pass
+	_animation_player.play("attackBasic")
+	#code for attacks
 
 
 
 func stateAttackStillL():
-	if(doneAttacking):
-		state = "idle"
-	pass
+	_animation_player.play("attackBasic")
 
+	
 
+func stateAttackMoveR():
+	_animation_player.play("attackForward")
 
+func stateAttackMoveL():
+	_animation_player.play("attackForward")
 
 func stateSlideR():
 	if(state == "slideR"):
@@ -514,32 +511,33 @@ func stateStopRunL():
 		else:
 			state = "idle"
 
-func handleAttack(delta):
+
+
+
+func stateMachineSetAttack(delta):
 	#attackStill(L/R) / attackMove(L/R) / attackUp(L/R) /attackDash(L/R) attackDown(L/R)	
-	if(attackCooldown >= 0):
-		if(activeAttack):
-			attackCooldown -= delta
-		if(attackCooldown < 0):
-			activeAttack = false
-	
-	if(!activeAttack):
-		
-		
-		return
-		
-		
-	else:
+	#if(attackCooldown >= 0):
+		#if(activeAttack):
+			#attackCooldown -= delta
+		#if(attackCooldown < 0):
+			#activeAttack = false
+	#
+	#if(!activeAttack):
+		#
+		#
+		#return
+		#
+		#
+	#else:
+		behavior = "attack"
 		match(state):
 			"idle":
 				#state = "attackStllN"#fix direction later
 				if(isLeft):
 					state = "attackStillL"
-					stateAttackStillL()
-					
 				else:
 					state = "attackStillR"
-					stateAttackStillR()
-				_animation_player.play("attackBasic")
+
 			"interact":
 				return
 			"runL":
@@ -574,18 +572,66 @@ func handleAttack(delta):
 func returnFromAttack():
 	pass
 
+func stateMachineManager(delta):
+	flip()
+	###Manages the state of the player.
+	#state == state (anims and whatnot)
+	#behavior == what player is doing. <-tie to certain anims? (i.e. aggressive idle vs. passive)
+	
+	
 
+	match(behavior):
+		"passive":
+			stateMachineMove(delta)
+		"change":#used to swap from move -> attack
+			stateMachineSetAttack(delta)
+		"attack":
+			stateMachineDoAttack(delta)
+			incrementAttackCoolDown(delta)
+		"other":#use for interact, cutscenes, etc. 
+			pass
+			###probably should move this block
+	###probably should move this block
+	motion.y += gravity + delta # Always make the player fall down
+	set_velocity(motion)
+	set_up_direction(Vector2.UP)#look into what this does...
+	move_and_slide()
+	motion = velocity#move and slide is better for platformers. add hit boxes elsewhere.
+	
 
+func stateMachineDoAttack(delta):
+
+	if(!activeAttack):
+		state = "idle"#make more elegent
+		behavior = "passive"
+
+	else:
+		isAttackEnd()
+		match state:
+			"attackStillL":
+				motion.x = 0 
+				stateAttackStillL()
+			"attackStillR":
+				motion.x = 0 
+				stateAttackStillR()
+			"attackMoveR":
+				motion.x = speed 
+				stateAttackMoveR()
+			"attackMoveL":
+				motion.x = -speed # then the x coordinates of the vector be negative
+				stateAttackMoveL()
+	
 
 
 func adustFacing():
-	#fix later
-	if(motion.x == 0):
-		pass
-	elif(motion.x > 0):
-		facing.rotation_degrees = 0
-	else:
-		facing.rotation_degrees = 180
+	pass
+	##fix later
+	#if(motion.x == 0):
+		#pass
+	#elif(motion.x > 0):
+		#facing.rotation_degrees = 0
+	#else:
+		#facing.rotation_degrees = 180
 	
 
 
@@ -627,10 +673,14 @@ func get_Input(delta):
 	
 		
 func test():
-	print(self)
-	state = "undefined"
-	_animation_player.play("attackBasic")
-		
+	print(state)
+	attackLength = 0
+	#state = "undefined"
+	#_animation_player.play("attackBasic")
+
+func isState():
+	pass
+
 func setInteract(r, a):
 	interactResource = r
 	interactAction = a
@@ -692,3 +742,17 @@ func _on_AreaLeft_body_entered(body):
 		#not in use
 	print(body)
 	pass # Replace with function body.
+
+func isAttackEnd():
+	if(attackLength < attackCooldown):
+		activeAttack = true
+	else:
+		activeAttack = false
+
+func incrementAttackCoolDown(delta):
+	if(attackLength < attackCooldown):
+		attackLength += delta
+
+func resetAttackLength():
+	attackLength = 0
+	print("reset attack length")

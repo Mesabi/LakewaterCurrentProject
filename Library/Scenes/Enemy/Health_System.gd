@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var points : int = 100
+@export var points : int = 11
 @export var isDead = false
 
 @export var hasMax = false
@@ -20,8 +20,8 @@ func deductHealthAndKill(amt):
 	points -= amt
 	if(points < 0):
 		isDead = true
-		var end = get_parent()
-		end.queue_free()
+		var end = get_parent()#someEnemy -> enemy -> healthSystem
+		end.enemyIsDead()
 		
 func addHealth(amt):
 	points += amt
