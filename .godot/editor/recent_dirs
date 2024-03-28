@@ -1,8 +1,11 @@
-res://Library/Levels
-res://Library/Tests
-res://Library/Scenes/Player/Weapon/Sword
 res://Library/Scenes/Globals
-res://Library/Assets/Stock_Objects/Solid
-res://Library/Scenes/Environment
+res://Library/Scenes/Menu/MainMenu
 res://Library/Scenes/Managers
+res://Library/Levels/DefaultError
+res://Library/Scenes/Enemy/StateMachine
+res://Library/Tests
+res://Library/Scenes/Environment
+res://Library/Levels
+res://Library/Scenes/Player/Weapon/Sword
+res://Library/Assets/Stock_Objects/Solid
 res://addons/dialogue_manager

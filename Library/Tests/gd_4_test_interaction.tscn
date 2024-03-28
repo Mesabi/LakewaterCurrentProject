@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsg5cm3t6y3qb"]
+
+[ext_resource type="PackedScene" uid="uid://bc7pf2p13vrnl" path="res://Library/Scenes/Globals/Interact.tscn" id="1_wjhs0"]
+[ext_resource type="Texture2D" uid="uid://bbkdsu7nyk0lt" path="res://Library/Assets/Stock_Objects/White_Edited/Triangle.png" id="3_mtiwr"]
+
+[node name="GD4 Test Interaction" type="Node2D"]
+
+[node name="Interact" parent="." instance=ExtResource("1_wjhs0")]
+collision_mask = 16
+myPath = "res://Library/Dialog/Drafts/test-4.dialogue"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_mtiwr")

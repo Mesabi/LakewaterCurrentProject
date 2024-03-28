@@ -25,6 +25,7 @@ var dialogue_line: DialogueLine:
 
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
+			Global.inInteraction = false#NOTE added by NS
 			queue_free()
 			return
 

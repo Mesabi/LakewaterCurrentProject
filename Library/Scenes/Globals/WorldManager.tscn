@@ -3,18 +3,15 @@
 [ext_resource type="Script" path="res://Library/Scenes/Globals/WorldManager.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dwavi2vv13g2u" path="res://Library/Scenes/UI/HUD.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://hkrqsdcyi550" path="res://Library/Scenes/Player/Player/Player.tscn" id="4_y1iwu"]
-[ext_resource type="PackedScene" path="res://Library/Scenes/UI/Pause Menu.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://d4hpqqa2m7xuh" path="res://Library/Scenes/UI/Pause Menu.tscn" id="6"]
 
 [node name="WorldManager" type="Node2D"]
 script = ExtResource("1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("6")]
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("3")]
 offset_left = 0.0

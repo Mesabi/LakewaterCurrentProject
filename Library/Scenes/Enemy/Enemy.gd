@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #the goal here will be to write a few different state machines that are determined by
 #enemy type.
-
+@export var debug : bool = false
 
 @export var EnemyType = "undefined"
 
@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var hitbox = $Hitbox
 @onready var _anim = $AnimationPlayer
 @onready var _sprite = $Sprite2D
+@onready var _stateMachine = $StatemachinePlaceholder
 @onready var isLeft = false
 
 

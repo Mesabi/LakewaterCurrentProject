@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1oweg0r1ikev"]
+
+[ext_resource type="Script" path="res://Library/Scenes/Enemy/StateMachine/enemy_state_machine_default.gd" id="1_hu5x4"]
+
+[node name="EnemyStateMachineDefault" type="Node2D"]
+script = ExtResource("1_hu5x4")

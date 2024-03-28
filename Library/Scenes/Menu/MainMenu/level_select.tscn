@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://o2ep45ndh2u6"]
+
+[ext_resource type="Script" path="res://Library/Scenes/Menu/MainMenu/level_select.gd" id="1_p4fb2"]
+
+[node name="Level_Select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p4fb2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 611.0
+offset_bottom = 395.0
+
+[node name="Select" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 517.0
+offset_top = 333.0
+offset_right = 574.0
+offset_bottom = 364.0
+text = "Select"
+
+[node name="ItemList" type="ItemList" parent="Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 19.0
+offset_right = 467.0
+offset_bottom = 369.0
+allow_reselect = true
+
+[connection signal="pressed" from="Panel/Select" to="." method="_on_select_pressed"]
+[connection signal="item_selected" from="Panel/ItemList" to="." method="_on_item_list_item_selected"]

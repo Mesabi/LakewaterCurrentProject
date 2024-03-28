@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1h824ckwv1n6"]
+
+[ext_resource type="Texture2D" uid="uid://nrmse3l0qirn" path="res://Library/Assets/Stock_Objects/Solid/Square_Solid.png" id="1_0bi3x"]
+[ext_resource type="Script" path="res://Library/Scenes/Environment/checkpoint.gd" id="1_4har5"]
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_4har5")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0bi3x")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -44.0
+offset_right = 20.0
+offset_bottom = -21.0
+text = "undefined checkpoint"

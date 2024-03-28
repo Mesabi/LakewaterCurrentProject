@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #lerp broke 3->4 needs replacement
-
+var debug : bool = false
 
 
 ###INPUTS###
@@ -31,6 +31,7 @@ var attackCooldown : float = 0.5
 var attackLength = .5
 var attackTime = 0.0
 @onready var attackManager = $Attack
+@onready var actionLabel = $ActionLabel
 
 var speed = 750
 #var velocity : Vector2
@@ -79,9 +80,38 @@ var interactAction = null
 var state = "idle"
 var behavior = "passive" # passive / change / attack / other 
 
+enum CharacterState {
+	Idle,
+	Interact,
+	RunLeft,
+	RunRight,
+	SlideLeft,
+	SlideRight,
+	JumpLeft,
+	JumpRight,
+	FallLeft,
+	FallRight,
+	FallNone,
+	JumpNone,
+	DashRight,
+	DashLeft,
+	StopRunLeft,
+	StopRunRight
+}
+enum CharacterBehavior{
+	Passive,
+	Change,
+	Attack,
+	Other,
+	Debug
+}
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(self.position)
+	#print(self.position)
 	pass # Replace with function body.
 
 
@@ -90,48 +120,57 @@ func _physics_process(delta):
 	label1.text = str("x : ")+str(motion.x) + "y : " + str(motion.y)
 	label2.text = str(attackLength)
 	label3.text = str(state)
-	isState()
-
+	if(debug):
+		doDebugTask()
 	#velocity = Vector2.ZERO
 	cam.position = self.position
-	getInput(delta)
+	getInput(delta)#
+	handleInputLogic(delta)
 	stateMachineManager(delta)
 
 
 
 
 func getInput(delta):
-	#some of these may need to be reset for actions that should be 'just' pressed. 
-	
-	activeR = Input.is_action_pressed("ui_right")
-	activeL = Input.is_action_pressed("ui_left")
-	activeU = Input.is_action_pressed("ui_up")
-	activeD = Input.is_action_pressed("ui_down")
-	activeDash = Input.is_action_pressed("SHIFT")
-	activeSpell = Input.is_action_pressed("A")
-	activeBlock = Input.is_action_pressed("X")
-	activeParry = Input.is_action_pressed("C")
+	activeR = Input.is_action_pressed("ui_right")#finalized
+	activeL = Input.is_action_pressed("ui_left")#finalized
+	activeU = Input.is_action_pressed("ui_up")#finalized
+	activeD = Input.is_action_pressed("ui_down")#finalized
+	activeDash = Input.is_action_pressed("SHIFT")#finalized
+	activeSpell = Input.is_action_pressed("A")#TODO settle on Name: "Charge" or "Spell
+	activeBlock = Input.is_action_pressed("X")#finalized
+	activeParry = Input.is_action_pressed("C")#TODO Pick better name
 	activeSwap = Input.is_action_pressed("S")
 	activeOther = Input.is_action_pressed("D")
 	activeReset = Input.is_action_pressed("R")
-	
 	activeInteract = Input.is_action_pressed("E")
-	if(Input.is_action_just_pressed("Z")):#attack
-		if(!activeAttack):
-			activeAttack = true
-			behavior = "change"
-			attackLength = 0
-			attackManager.attack(isLeft)
-			#attackCooldown = 1# move this line ASAP
+	activeAttack = Input.is_action_pressed("Z")#finalized
 
-	
+
+func handleInputLogic(delta):
+	if(activeAttack && !isAttacking):
+		isAttacking = true
+		behavior = "change"
+		attackLength = 0
+		attackManager.attack(isLeft)
+		if(debug):
+			print("debugging!")
+		#attackCooldown = 1# move this line ASAP
+	if(!isAttacking && activeInteract):
+		doInteract()
+	#if(state == "interact" && Global.inInteraction == false):#NOTE might be redundant
+		##releases player to idle when interaction is over
+		#state = "idle"
+		#behavior = "passive"
 	isJump = activeU#will need update later
 	
 	if is_on_floor(): # If the ground checker is colliding with the ground
 		currentJumps = 0#reset jumps
-		if(!canDash):#reset dashes
-			pass
-			
+	if(!canDash):#reset dashes
+		pass
+	if(activeSwap):
+		#doWeaponSwap()
+		pass
 	
 
 
@@ -516,19 +555,7 @@ func stateStopRunL():
 
 func stateMachineSetAttack(delta):
 	#attackStill(L/R) / attackMove(L/R) / attackUp(L/R) /attackDash(L/R) attackDown(L/R)	
-	#if(attackCooldown >= 0):
-		#if(activeAttack):
-			#attackCooldown -= delta
-		#if(attackCooldown < 0):
-			#activeAttack = false
-	#
-	#if(!activeAttack):
-		#
-		#
-		#return
-		#
-		#
-	#else:
+
 		behavior = "attack"
 		match(state):
 			"idle":
@@ -601,7 +628,7 @@ func stateMachineManager(delta):
 
 func stateMachineDoAttack(delta):
 
-	if(!activeAttack):
+	if(!isAttacking):
 		state = "idle"#make more elegent
 		behavior = "passive"
 
@@ -620,56 +647,7 @@ func stateMachineDoAttack(delta):
 			"attackMoveL":
 				motion.x = -speed # then the x coordinates of the vector be negative
 				stateAttackMoveL()
-	
 
-
-func adustFacing():
-	pass
-	##fix later
-	#if(motion.x == 0):
-		#pass
-	#elif(motion.x > 0):
-		#facing.rotation_degrees = 0
-	#else:
-		#facing.rotation_degrees = 180
-	
-
-
-
-func get_Input(delta):
-	#old do not use
-	if(Input.is_action_just_pressed("Pause")):
-		pass
-#	if(Input.is_action_just_pressed("Inventory")):
-#		pass
-	if(Input.is_action_just_pressed("TEST")):
-		#print(get_tree().get_root().get_node("Main").get_child(0).get_node("WorldManager").get_node("Player").global_position)
-		#Global.loadLevel(self, "res://Library/Levels/Test_Level.tscn")
-		#UI.currentHealth.text = "Asdf"
-		print("TEST")
-		#var dlog = load("res://Library/Scenes_2/test1.tres")
-		#DialogueManager.show_example_dialogue_balloon("this_is_a_node_title", dlog)
-		#print(player.velocity)
-		#print(Global.inInteraction)
-	
-	if(Input.is_action_just_pressed("click")):
-		#print("mouse")
-		#print(get_global_mouse_position())
-		#print("player")
-		#print(player.global_position)
-		#print(get_global_mouse_position().distance_to(player.global_position))
-		pass
-	
-	if(Input.is_action_just_pressed("interact")):#change to "switch weapon" also add hot keys.
-		pass
-	if(Input.is_action_just_pressed("reload")):
-
-		pass
-	if(Input.is_action_just_pressed("toggle")):
-		pass
-	if(Input.is_action_pressed("fire_weapon")):
-		pass
-	
 	
 		
 func test():
@@ -678,10 +656,12 @@ func test():
 	#state = "undefined"
 	#_animation_player.play("attackBasic")
 
-func isState():
-	pass
 
 func setInteract(r, a):
+	if(a != null):
+		actionLabel.text = "can interact"
+	else:
+		actionLabel.text = ""
 	interactResource = r
 	interactAction = a
 
@@ -745,9 +725,9 @@ func _on_AreaLeft_body_entered(body):
 
 func isAttackEnd():
 	if(attackLength < attackCooldown):
-		activeAttack = true
+		isAttacking = true
 	else:
-		activeAttack = false
+		isAttacking = false
 
 func incrementAttackCoolDown(delta):
 	if(attackLength < attackCooldown):
@@ -756,3 +736,6 @@ func incrementAttackCoolDown(delta):
 func resetAttackLength():
 	attackLength = 0
 	print("reset attack length")
+	
+func doDebugTask():
+	print("task")

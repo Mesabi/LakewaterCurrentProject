@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_ucqj2"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_s5ifk"]
 
 [resource]
-script = ExtResource("1_ucqj2")
+script = ExtResource("1_s5ifk")
 using_states = PackedStringArray()
 titles = {
 "this_is_a_node_title": "3"
@@ -18,6 +18,8 @@ lines = {
 "type": "title"
 },
 "10": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
 "id": "10",
 "next_id": "end",
 "next_id_after": "11",
@@ -67,6 +69,8 @@ lines = {
 "type": "dialogue"
 },
 "5": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
 "id": "5",
 "next_id": "6",
 "next_id_after": "11",
@@ -90,6 +94,8 @@ lines = {
 "type": "dialogue"
 },
 "7": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
 "id": "7",
 "next_id": "8",
 "next_id_after": "11",
@@ -112,6 +118,8 @@ lines = {
 "type": "dialogue"
 },
 "9": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
 "id": "9",
 "next_id": "3",
 "next_id_after": "11",
@@ -122,4 +130,4 @@ lines = {
 "type": "response"
 }
 }
-metadata/dialogue_manager_version = "2.29.1"
+metadata/dialogue_manager_version = "2.31.0"

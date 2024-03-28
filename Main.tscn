@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://y57oabnpb11u"]
+[gd_scene load_steps=3 format=3 uid="uid://y57oabnpb11u"]
 
-[ext_resource type="PackedScene" uid="uid://bqodbwe8g13sm" path="res://Library/Scenes/Globals/WorldManager.tscn" id="1"]
+[ext_resource type="Script" path="res://Main.gd" id="1_44337"]
+[ext_resource type="PackedScene" uid="uid://oa3lasvg1a02" path="res://Library/Scenes/Menu/MainMenu/main_menu.tscn" id="2_lle14"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_44337")
 
-[node name="WorldManager" parent="." instance=ExtResource("1")]
+[node name="Main_Menu" parent="." instance=ExtResource("2_lle14")]
