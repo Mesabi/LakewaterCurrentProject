@@ -2,12 +2,15 @@ extends Node2D
 #used to run global operations. i.e. calling dialog, game objectives, score, timers, etc.
 var a = 0
 
+var AutoStart = false#true
+
 @onready var WM = preload("res://Library/Scenes/Globals/WorldManager.tscn")
 
 var globalDebug : bool = false
 
 var current_scene = null#figure out what this does.
 
+var colorTest = Color.DARK_GOLDENROD
 
 var IsolationTest = false #use this to run single scene instances. 
 
@@ -49,6 +52,8 @@ enum levelType {
 }
 
 
+
+
 func newGameSetUp():
 	pass
 
@@ -67,10 +72,12 @@ func startUp():
 
 
 func enterDebugMode():
+	print("Debuging")
 	globalDebug = true
 	iterate_children(get_tree().get_root(), "debug")
 
 func exitDebugMode():
+	print("Debug Exited")
 	globalDebug = false
 	iterate_children(get_tree().get_root(), "debug")
 
@@ -131,11 +138,9 @@ func instantiateWorldManager():
 
 func getWorldManager():
 	#returns WM. Creates it if for some reason it doesn't exit.
-	if(isWorldManager()):
-		get_tree().get_root().get_node("Main").get_node("WorldManager")
-	else:
+	if(!isWorldManager()):
 		instantiateWorldManager()
-		return get_tree().get_root().get_node("Main").get_node("WorldManager")
+	return get_tree().get_root().get_node("Main").get_node("WorldManager")
 
 func setGlobalObjective():
 	getWorldManager().getHUD().updateObjective(currentObjective)
@@ -152,7 +157,11 @@ func doContextAction(action):
 
 func loadLevel(worldManager: Node2D, scenePath: String) -> void:
 	#90% sure this is the only one of these that works
+	print(scenePath)
+	
 	var currentLevel = null
+	if(worldManager == null):
+		worldManager = getWorldManager()
 	
 	# Unload the current level if it exists
 	if worldManager.has_node("Level"):
@@ -186,10 +195,9 @@ func loadLevel(worldManager: Node2D, scenePath: String) -> void:
 
 
 func _ready():
-	#var root = get_tree().get_root()
-	#current_scene = root.get_child(root.get_child_count() - 1)
-	#setGlobalObjective()
-#	print(current_scene)
+	if(AutoStart):
+		get_tree().get_root().get_node("Main").get_node("Main_Menu").queue_free()
+		startUp()
 	pass
 
 func some_function():

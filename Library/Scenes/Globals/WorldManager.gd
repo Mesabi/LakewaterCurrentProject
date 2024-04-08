@@ -94,3 +94,10 @@ func testThis(that):
 	print("----")
 	print(that)
 	print("was just tested")
+
+
+func _unhandled_input(event):
+	#this runs outside of game processes
+	if(Input.is_action_just_pressed("TEST")):
+		Global.enterDebugMode()
+		pass

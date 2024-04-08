@@ -27,11 +27,13 @@ func updateLevelList():
 
 
 func _on_select_pressed():
-	#fix any syntax issues. Feeling lazy rn
-	Global.loadLevel(Global.getWorldManager(), selection)
-	pass # Replace with function body.
+	Global.loadLevel(Global.getWorldManager(), "res://Library/Levels/" + selection + ".tscn")
+	
+	get_parent().queue_free()#this might break depending on how this is called. 
+	#right now, that culls the menu that called this function, and itself.
 
 
 func _on_item_list_item_selected(index):
-	selection = levelList.get_selected_items()
+	selection = levelList.get_item_text(index)
+	print(selection)
 	pass # Replace with function body.

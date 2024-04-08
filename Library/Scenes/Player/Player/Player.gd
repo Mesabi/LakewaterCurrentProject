@@ -77,26 +77,39 @@ var interactResource = null
 var interactAction = null
 #onready var anim = $Autumn/AnimationPlayer
 #onready var currenAnim = anim.get("parameters/playback")
-var state = "idle"
-var behavior = "passive" # passive / change / attack / other 
+var state = CharacterState.Idle#CharacterState.Idle
+var behavior = CharacterBehavior.Passive #"passive" # passive / change / attack / other 
 
 enum CharacterState {
-	Idle,
+	Idle,#
 	Interact,
-	RunLeft,
-	RunRight,
-	SlideLeft,
-	SlideRight,
-	JumpLeft,
-	JumpRight,
-	FallLeft,
-	FallRight,
-	FallNone,
-	JumpNone,
+	RunLeft,#
+	RunRight,#
+	SlideLeft,#
+	SlideRight,#
+	JumpLeft,#
+	JumpRight,#
+	FallLeft,#
+	FallRight,#
+	FallNone,#
+	JumpNone,#
 	DashRight,
 	DashLeft,
 	StopRunLeft,
-	StopRunRight
+	StopRunRight,
+	Prone,
+	StillAttackLeft,
+	StillAttackRight,
+	MoveAttackLeft,
+	MoveAttackRight,
+	UpAttackLeft,
+	UpAttackRight,
+	DashAttackRight,
+	DashAttackLeft,
+	SpellLeft,
+	SpellRight,
+	Error,
+	Cutscene
 }
 enum CharacterBehavior{
 	Passive,
@@ -150,7 +163,7 @@ func getInput(delta):
 func handleInputLogic(delta):
 	if(activeAttack && !isAttacking):
 		isAttacking = true
-		behavior = "change"
+		behavior = CharacterBehavior.Change
 		attackLength = 0
 		attackManager.attack(isLeft)
 		if(debug):
@@ -194,7 +207,7 @@ func stateMachineMove(delta):
 	#change states is in different function
 	#attack states is in different function
 	match state:
-		"idle":
+		CharacterState.Idle:
 			#drift to stop.
 			if(abs(motion.x) > 10):#needs update
 				motion *= .8
@@ -202,27 +215,26 @@ func stateMachineMove(delta):
 				motion.x = 0
 			stateIdle()
 			_animation_player.play("Idle")
-		"interact":
+		CharacterState.Interact:
 			stateInteract(activeInteract)
-		"runL":
+		CharacterState.RunLeft:
 			motion.x = -speed # then the x coordinates of the vector be negative
 			stateRunL()
-
 			_animation_player.play("walk")
-		"runR":
+		CharacterState.RunRight:
 			motion.x = speed # then the x coordinates of the vector be positive
 			stateRunR()
 
 			_animation_player.play("walk")
-		"slideL":
+		CharacterState.SlideLeft:
 			_animation_player.play("slide")
 			motion.x = -speed * 1.5
 			stateSlideL()
-		"slideR":
+		CharacterState.SlideRight:
 			_animation_player.play("slide")
 			motion.x = speed * 1.5
 			stateSlideR()
-		"jumpL":
+		CharacterState.JumpLeft:
 		#fix jump anim for multijump
 		#also sync this up when you get a chance and redo these sprites
 			_animation_player.play("jump")
@@ -230,26 +242,26 @@ func stateMachineMove(delta):
 			motion.x = -speed
 			motion.y = -jumpforce
 			stateJumpL()
-		"jumpR":
+		CharacterState.JumpRight:
 			_animation_player.play("jump")
 			jumpTime -= delta
 			motion.x = speed
 			motion.y = -jumpforce
 			stateJumpR()
-		"fallL":
+		CharacterState.FallLeft:
 			_animation_player.play("Fall")
 			motion.x = -speed
 			stateFallL()
-		"fallR":
+		CharacterState.FallRight:
 			_animation_player.play("Fall")
 			motion.x = speed
 			stateFallR()
-		"fallN":
+		CharacterState.FallNone:
 			_animation_player.play("Fall")
 			motion.x = 0#lerp(motion.x, 0, 0.01)
 			#no modification to vectors
 			stateFallN()
-		"jumpN":
+		CharacterState.JumpNone:
 			#consider modifying this to have more interactions with dash mechanics.
 			#as is, this creates a a hard stop.
 			_animation_player.play("jump")
@@ -257,20 +269,20 @@ func stateMachineMove(delta):
 			motion.y = -jumpforce
 			motion.x = 0#lerp(motion.x, 0, 0.001)
 			stateJumpN()
-		"dashR":
+		CharacterState.DashRight:
 			dashTime -= delta
 			motion.y = 0
 			motion.x = dashForce
 			stateDashR()
-		"dashL":
+		CharacterState.DashLeft:
 			dashTime -= delta
 			motion.y = 0
 			motion.x = -dashForce
 			stateDashL()
-		"stopRunL":
+		CharacterState.StopRunLeft:
 			motion.x = 0#lerp(motion.x, 0, 0.1)
 			stateStopRunL()
-		"stopRunR":
+		CharacterState.StopRunRight:
 			motion.x = 0#lerp(motion.x, 0, 0.1)
 			stateStopRunR()
 		_:
@@ -283,95 +295,94 @@ func stateIdle():
 	#this shouldn't need to update the flip of the sprite.
 	if(isJump):
 			_animation_player.play("jump")
-			state = "jumpN"
+			state = CharacterState.JumpNone
 	if(activeR && !activeL):#idle -> runR
-		state = "runR"
+		state = CharacterState.RunRight
 		if(isDash):
-			state = "dashR"
+			state = CharacterState.DashRight
 	if(activeL && !activeR):#idle -> runL
-		state = "runL"
+		state = CharacterState.RunLeft
 		if(isDash):
-			state = "dashL"
+			state = CharacterState.DashLeft
 	
 			
 func stateInteract(activeI):
 	#if can interact do: state == interact.
 	if(Global.inInteraction):
-		state = "interact"
+		state = CharacterState.Interact
 	else:
-		state = "idle"
+		state = CharacterState.Idle
 	
 	
 	
 	
 func stateRunR():
-	if(state == "runR"):
+	if(state == CharacterState.RunRight):
 		if !is_on_floor():
-			state = "fallR"
+			state = CharacterState.FallRight
 			return
 		if(isJump):
-			state = "jumpR"
+			state = CharacterState.JumpRight
 		elif(isDash):
-			state = "dashR"
+			state = CharacterState.DashRight
 		else:
 			if(activeR):#runR -> runR
 				if(activeD):#runR -> slideR
-					state = "slideR"
+					state = CharacterState.SlideRight
 				else:
-					state = "runR"
+					state = CharacterState.RunRight
 			else:
-				state = "stopRunR"
+				state = CharacterState.StopRunRight
 				if(isJump):
-					state = "jumpR"
+					state = CharacterState.JumpRight
 
 func stateRunL():
 
-	if(state == "runL"):
+	if(state == CharacterState.RunLeft):
 		if !is_on_floor():
-			state = "fallL"
+			state = CharacterState.FallLeft
 			return
 		if(isJump):
-			state = "jumpL"
+			state = CharacterState.JumpLeft
 		elif(isDash):
-			state = "dashL"
+			state = CharacterState.DashLeft
 		else:
 			if(activeL):#runR -> runR
 				if(activeD):#runR -> slideR
-					state = "slideL"
+					state = CharacterState.SlideLeft
 				else:
-					state = "runL"
+					state = CharacterState.RunLeft
 			else:
-				state = "stopRunL"
+				state = CharacterState.StopRunLeft
 				if(isJump):
-					state = "jumpL"
+					state = CharacterState.JumpLeft
 
 func stateDashR():
-	if(state == "dashR"):
+	if(state == CharacterState.DashRight):
 		#if you hit a wall, immediately stop.
 		if(is_on_wall()):
-			state = "fallR"
+			state = CharacterState.FallRight
 		else:
 			if(dashTime < 0):#if not still dashing go to run
-				state = "runR"
+				state = CharacterState.RunRight
 		if(isJump):
-			state = "jumpR"
+			state = CharacterState.JumpRight
 			if(activeL):
-				state = "jumpL"
+				state = CharacterState.JumpLeft
 			
 
 func stateDashL():
-	if(state == "dashL"):
+	if(state == CharacterState.DashLeft):
 		#if you hit a wall, immediately stop.
 		if(is_on_wall()):
-			state = "fallL"
+			state = CharacterState.FallLeft
 		else:
 			if(dashTime < 0):#if not still dashing go to run
-				state = "runL"
+				state = CharacterState.RunLeft
 		if(isJump):
-			state = "jumpR"
+			state = CharacterState.JumpRight
 			if(activeL):
-				state = "jumpL"
-
+				state = CharacterState.JumpLeft
 
 
 func stateAttackStillR():
@@ -392,209 +403,210 @@ func stateAttackMoveL():
 	_animation_player.play("attackForward")
 
 func stateSlideR():
-	if(state == "slideR"):
+	if(state == CharacterState.SlideRight):
 		if(activeR):#runR -> runR
-			state = "slideR"
+			state = CharacterState.SlideRight
 		else:
-			state = "runR"
+			state = CharacterState.RunRight
 	else:
-		state == "slideR"
+		state == CharacterState.SlideRight
 
 
 func stateSlideL():
-	if(state == "slideL"):
+	if(state == CharacterState.SlideLeft):
 		#todo add slide time.
 		
 		if(activeL):#runR -> runR
-			state = "slideL"
+			state = CharacterState.SlideLeft
 		else:
-			state = "runL"
+			state = CharacterState.RunLeft
 
 func stateJumpN():
-	if(state == "jumpN"):
+	if(state == CharacterState.JumpNone):
 		if(jumpTime > 0):#
 			if(activeL):#runR -> runR
-				state = "jumpL"
+				state = CharacterState.JumpLeft
 			elif(activeR):
-				state = "jumpR"
+				state = CharacterState.JumpRight
 			else:
-				state = "jumpN"
+				state = CharacterState.JumpNone
 		else:
 			if(activeL):#runR -> runR
-				state = "fallL"
+				state = CharacterState.FallLeft
 			elif(activeR):
-				state = "fallR"
+				state = CharacterState.FallRight
 			else:
-				state = "fallN"
+				state = CharacterState.FallNone
 
 	
 func stateJumpR():
-	if(state == "jumpR"):
+	if(state == CharacterState.JumpRight):
 		if(jumpTime > 0):
 			if(activeL):#runR -> runR
-				state = "jumpL"
+				state = CharacterState.JumpLeft
 			elif(activeR):
-				state = "jumpR"
+				state = CharacterState.JumpRight
 			else:
-				state = "jumpN"
+				state = CharacterState.JumpNone
 		else:
 			if(activeL):#runR -> runR
-				state = "fallL"
+				state = CharacterState.FallNone
 			else:
-				state = "fallR"
+				state = CharacterState.FallRight
 
 func stateJumpL():
-	if(state == "jumpL"):
+	if(state == CharacterState.JumpLeft):
 		if(jumpTime > 0):
 			if(activeR):#runR -> runR
-				state = "jumpR"
+				state = CharacterState.JumpRight
 			elif(activeL):
-				state = "jumpL"
+				state = CharacterState.JumpLeft
 			else:
-				state = "jumpN"
+				state = CharacterState.FallNone
 		else:
 			if(activeR):#runR -> runR
-				state = "fallR"
+				state = CharacterState.FallRight
 			else:
-				state = "fallL"
+				state = CharacterState.FallLeft
 
 
 func stateFallN():
-	if(state == "fallN"):
+	if(state == CharacterState.FallNone):
 		if is_on_floor():
 			if(activeL):#runR -> runR
-				state = "runL"
+				state = CharacterState.RunLeft
 			elif(activeR):
-					state = "runR"
+					state = CharacterState.RunRight
 			else:
-				state = "idle"
+				state = CharacterState.Idle
 		else:
 			if(isJump):
 				if(activeR):#runR -> runR
-					state = "jumpR"
+					state = CharacterState.JumpRight
 				elif(activeL):
-					state = "jumpL"
+					state = CharacterState.JumpLeft
 				else:
-					state = "jumpN"
+					state = CharacterState.JumpNone
 			else:
 				if(activeR):#runR -> runR
-					state = "fallR"
+					state = CharacterState.FallRight
 				elif(activeL):
-					state = "fallL"
+					state = CharacterState.FallLeft
 				else:
-					state = "fallN"
+					state = CharacterState.FallNone
 
 	
 	
 	
 func stateFallR():
-	if(state == "fallR"):
+	if(state == CharacterState.FallRight):
 		if is_on_floor():
 			if(activeR):#runR -> runR
-				state = "runR"
+				state = CharacterState.RunRight
 			else:
 				if(activeL):
-					state = "runL"
+					state = CharacterState.RunLeft
 				else:
-					state = "idle"
+					state = CharacterState.Idle
 		else:
 			if(isJump):
 				if(activeL):#runR -> runR
-					state = "jumpL"
+					state = CharacterState.JumpLeft
 				else:
-					state = "jumpR"
+					state = CharacterState.JumpRight
 			else:
 				if(activeL):#runR -> runR
-					state = "fallL"
+					state = CharacterState.FallLeft
 				else:
-					state = "fallR"
+					state = CharacterState.FallRight
 
 
 func stateFallL():
-	if(state == "fallL"):
+	if(state == CharacterState.FallLeft):
 		if is_on_floor():
 			if(activeL):#runR -> runR
-				state = "runL"
+				state = CharacterState.RunLeft
 			elif(activeR):
-					state = "runR"
+					state = CharacterState.RunRight
 			else:
-				state = "idle"
+				state = CharacterState.Idle
 		else:
 			if(isJump):
 				if(activeR):#runR -> runR
-					state = "jumpR"
+					state = CharacterState.JumpRight
 				else:
-					state = "jumpL"
+					state = CharacterState.JumpLeft
 			else:
 				if(activeR):#runR -> runR
-					state = "fallR"
+					state = CharacterState.FallRight
 				else:
-					state = "fallL"
+					state = CharacterState.FallLeft
 	
 
 func stateStopRunR():
-	if(state == "stopRunR"):
+	if(state == CharacterState.StopRunRight):
 		if(activeR):#runR -> runR
-			state = "runR"
+			state = CharacterState.RunRight
 			if(activeD):#runR -> slideR
-				state = "slideR"
+				state = CharacterState.SlideRight
 		else:
-			state = "idle"
+			state = CharacterState.Idle
 	
 func stateStopRunL():
-	if(state == "stopRunL"):
-		if(activeL):#runR -> runR
-			state = "runL"
-		if(activeR):#runR -> slideR
-				state = "slideL"
+	if(state == CharacterState.StopRunLeft):
+		if(activeL):
+			state = CharacterState.RunLeft
+		if(activeR):
+				state =  CharacterState.SlideLeft
 		else:
-			state = "idle"
+			state = CharacterState.Idle
 
 
 
 
 func stateMachineSetAttack(delta):
+	#chooses which attack state to use by referencing current state.
 	#attackStill(L/R) / attackMove(L/R) / attackUp(L/R) /attackDash(L/R) attackDown(L/R)	
 
-		behavior = "attack"
+		behavior = CharacterBehavior.Attack
 		match(state):
-			"idle":
+			CharacterState.Idle:
 				#state = "attackStllN"#fix direction later
 				if(isLeft):
-					state = "attackStillL"
+					state = CharacterState.StillAttackLeft
 				else:
-					state = "attackStillR"
+					state = CharacterState.StillAttackRight
 
-			"interact":
+			CharacterState.Interact:
 				return
-			"runL":
-				state = "attackMoveL"
-			"runR":
-				state = "attackMoveR"
-			"slideL":#sliding will move player faster, but can't attack.
+			CharacterState.RunLeft:
+				state = CharacterState.MoveAttackLeft
+			CharacterState.RunRight:
+				state = CharacterState.MoveAttackRight
+			CharacterState.SlideLeft:#sliding will move player faster, but can't attack.
 				return
-			"slideR":
+			CharacterState.SlideRight:
 				return
-			"jumpL":
-				state = "attackUpL"
-			"jumpR":
-				state = "attackMoveR"
-			"fallL":
-				state = "attackDownL"
-			"fallR":
-				state = "attackDownR"
-			"fallN":####
+			CharacterState.JumpLeft:
+				state = CharacterState.UpAttackLeft
+			CharacterState.JumpRight:
+				state = CharacterState.UpAttackRight
+			CharacterState.FallLeft:
+				state = CharacterState.FallLeft
+			CharacterState.FallRight:
+				state = CharacterState.FallRight
+			CharacterState.FallNone:####
 				return##
-			"jumpN":####Neutrals need fixing.
+			CharacterState.JumpNone:####Neutrals need fixing.
 				return#
-			"dashR":####
-				state = "attackDashL"
-			"dashL":
-				state = "attackDashL"
-			"stopRunL":
-				state = "attackStillL"
-			"stopRunR":
-				state = "attackStillR"
+			CharacterState.DashRight:####
+				state = CharacterState.DashAttackRight
+			CharacterState.DashLeft:
+				state = CharacterState.DashAttackLeft
+			CharacterState.StopRunLeft:
+				state = CharacterState.StillAttackLeft
+			CharacterState.StopRunRight:
+				state = CharacterState.StillAttackRight
 		
 func returnFromAttack():
 	pass
@@ -608,16 +620,16 @@ func stateMachineManager(delta):
 	
 
 	match(behavior):
-		"passive":
+		CharacterBehavior.Passive:
 			stateMachineMove(delta)
-		"change":#used to swap from move -> attack
+		CharacterBehavior.Change:#used to swap from move -> attack
 			stateMachineSetAttack(delta)
-		"attack":
+		CharacterBehavior.Attack:
 			stateMachineDoAttack(delta)
 			incrementAttackCoolDown(delta)
-		"other":#use for interact, cutscenes, etc. 
+		CharacterBehavior.Other:#use for interact, cutscenes, etc. 
 			pass
-			###probably should move this block
+			
 	###probably should move this block
 	motion.y += gravity + delta # Always make the player fall down
 	set_velocity(motion)
@@ -628,23 +640,23 @@ func stateMachineManager(delta):
 
 func stateMachineDoAttack(delta):
 
-	if(!isAttacking):
-		state = "idle"#make more elegent
-		behavior = "passive"
-
+	if(!isAttacking):#if no longer attacking, set to idle and move on.
+		state = CharacterState.Idle#make more elegent
+		behavior = CharacterBehavior.Passive
+		return
 	else:
 		isAttackEnd()
 		match state:
-			"attackStillL":
+			CharacterState.StillAttackLeft:
 				motion.x = 0 
 				stateAttackStillL()
-			"attackStillR":
+			CharacterState.StillAttackRight:
 				motion.x = 0 
 				stateAttackStillR()
-			"attackMoveR":
+			CharacterState.MoveAttackRight:
 				motion.x = speed 
 				stateAttackMoveR()
-			"attackMoveL":
+			CharacterState.MoveAttackLeft:
 				motion.x = -speed # then the x coordinates of the vector be negative
 				stateAttackMoveL()
 
@@ -658,6 +670,8 @@ func test():
 
 
 func setInteract(r, a):
+	#Resource = r
+	#Action = a
 	if(a != null):
 		actionLabel.text = "can interact"
 	else:
@@ -668,7 +682,7 @@ func setInteract(r, a):
 		
 func doInteract():
 	Global.doConversation(interactResource,interactAction)
-	state = "interact"
+	state = CharacterState.Interact
 
 		
 func takeDamage():

@@ -1,6 +1,7 @@
 extends Control
 
 @onready var options = preload("res://Library/Scenes/Menu/MainMenu/options_menu.tscn")
+@onready var select = preload("res://Library/Scenes/Menu/MainMenu/level_select.tscn")
 #will probably need to update this path later.
 
 
@@ -27,8 +28,8 @@ func _on_options_pressed():
 
 
 func _on_extras_pressed():
-	#Global.load_game()
-
+	var Select = select.instantiate()
+	add_child(Select)
 	pass # Replace with function body.
 
 

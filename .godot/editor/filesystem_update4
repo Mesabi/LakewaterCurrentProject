@@ -1,8 +1,14 @@
 res://default_env.tres
-res://Library/Scenes/Menu/MainMenu/level_select.tscn
+res://Library/Scenes/UI/Pause Menu.tscn
 res://Library/Scenes/Managers/Enemy_Manager.gd
 res://Main.tscn
 res://Library/Levels/GD4Test-01.tscn
 res://Library/Scenes/Menu/MainMenu/main_menu.tscn
 res://Library/Scenes/Globals/WorldManager.tscn
-res://Library/Scenes/Menu/MainMenu/level_select.gd
+res://Library/Scenes/Menu/MainMenu/level_select.tscn
+res://Library/Scenes/Menu/menu_panel.tscn
+res://Library/Scenes/UI/Pause Menu.gd
+res://Library/Scenes/Menu/MainMenu/main_menu.gd
+res://Library/Scenes/Globals/Global.gd
+res://Library/Scenes/Globals/WorldManager.gd
+res://Library/Scenes/Menu/TEST PANEL.gd

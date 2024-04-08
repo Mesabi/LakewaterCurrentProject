@@ -1,9 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://y57oabnpb11u"]
+[gd_scene load_steps=5 format=3 uid="uid://y57oabnpb11u"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_44337"]
 [ext_resource type="PackedScene" uid="uid://oa3lasvg1a02" path="res://Library/Scenes/Menu/MainMenu/main_menu.tscn" id="2_lle14"]
+[ext_resource type="PackedScene" uid="uid://d4hpqqa2m7xuh" path="res://Library/Scenes/UI/Pause Menu.tscn" id="3_i7wgo"]
+[ext_resource type="Script" path="res://Library/Scenes/Menu/TEST PANEL.gd" id="4_x0bag"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_44337")
 
+[node name="Overhead" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Pause Menu" parent="Overhead" instance=ExtResource("3_i7wgo")]
+
 [node name="Main_Menu" parent="." instance=ExtResource("2_lle14")]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_x0bag")
+
+[node name="Button" type="Button" parent="Panel"]
+offset_left = 217.0
+offset_top = 422.0
+offset_right = 326.0
+offset_bottom = 453.0
+text = "TEST Outside"
+
+[connection signal="pressed" from="Panel/Button" to="Panel" method="_on_button_pressed"]
